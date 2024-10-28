@@ -4,9 +4,25 @@
 
 @layer utilities {
   :root {
-    --primary-color : #39072F;
+    --primary-color: #39072F;
     --accent-color: #F798F2;
     --background-color: #F5F5F5;
-    --dimmed-text :  #ffffffb3;
+    --dimmed-text: #ffffffb3;
+  }
+
+  .bg-primary {
+    background-color: var(--primary-color);
+  }
+
+  .bg-accent {
+    background-color: var(--primary-color);
+  }
+
+  .bg-color {
+    background-color: var(--primary-color);
+  }
+
+  .dimmed-text {
+    background-color: var(--primary-color);
   }
 }
