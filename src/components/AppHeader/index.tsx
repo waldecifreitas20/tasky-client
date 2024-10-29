@@ -12,7 +12,13 @@ export function AppHeader() {
   return (
     <>
       <header className="bg-primary px-5 py-3 border-b border-white">
-        <div className="flex justify-between items-center max-w-xl mx-auto">
+        <div className="
+          flex 
+          justify-between items-center 
+          max-w-xl 
+          mx-auto
+          lg:max-w-5xl
+        ">
 
           <a href="/" className="w-[50px]  flex justify-start">
             <img className="h-[50px]" src="/task-icon.svg" alt="task icone" />
