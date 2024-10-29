@@ -9,6 +9,11 @@ export function AppHeader() {
     setVisibility(!dropdownVisibility);
   }
 
+  const logoutUser = (evt: MouseEvent) => {
+    evt.preventDefault();
+    alert("Usuario deslogado")
+  }
+
   return (
     <>
       <header className="bg-primary px-5 py-3 border-b border-white">
@@ -17,23 +22,27 @@ export function AppHeader() {
           justify-between items-center 
           max-w-xl 
           mx-auto
-          lg:max-w-5xl
+          sm:max-w-2xl
+          md:max-w-4xl
+          xl:max-w-6xl
         ">
 
-          <a href="/" className="w-[50px]  flex justify-start">
+          <a href="/" className="flex justify-start items-center">
             <img className="h-[50px]" src="/task-icon.svg" alt="task icone" />
+            <h1 className="text-accent text-2xl ml-2 hidden md:block">Tasky</h1>
           </a>
 
           <SearchBar classes="w-[65%]" />
 
-          <div className="relative">
+          <div className="justify-center items-center text-accent hidden md:flex">
+            <a href="" className=" mr-2 text-accent" onClick={logoutUser}>Sair</a>
+            <i className="fa-regular fa-user fa-xl"></i>
+          </div>
 
-            <a href=""
-              className="w-[50px] flex justify-center"
-              onClick={toggleDropdown}
-            >
-              <i className="fa-regular fa-user fa-2xl text-white"></i>
-            </a>
+          <div className="relative md:hidden">
+            <button className="w-[50px]  flex justify-center" onClick={toggleDropdown}>
+              <i className="fa-regular fa-user fa-xl text-white"></i>
+            </button>
 
             <div className={`
               absolute
@@ -47,7 +56,7 @@ export function AppHeader() {
               ${dropdownVisibility ? 'hidden' : 'block'}
               `}
             >
-              <a href="" className="block px-7 py-2 hover:bg-gray-100">Sair</a>
+              <a href="" className="md:hidden block px-7 py-2 hover:bg-gray-100">Sair</a>
             </div>
           </div>
 
