@@ -1,4 +1,4 @@
-import { AppHeader } from "../components/AppHeader.tsx";
+import { AppHeader } from "../components/AppHeader/index.tsx";
 
 export function HomePage() {
   return (
