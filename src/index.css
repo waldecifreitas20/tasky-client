@@ -42,16 +42,16 @@
     background-color: var(--primary-color);
   }
 
-  .text-primary{
+  .text-primary {
     color: var(--primary-color);
   }
-  
-  .text-accent{
+
+  .text-accent {
     color: var(--accent-color);
   }
 
   .transparent-placeholder::placeholder {
-    color: rgba(255, 255, 255, 0.20
-    );
+    color: rgba(255, 255, 255, 0.20);
   }
+
 }
