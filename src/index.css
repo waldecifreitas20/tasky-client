@@ -2,16 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Lexend';
+  src: url('assets/Lexend-VariableFont_wght.ttf');
+}
+
 @layer utilities {
   :root {
     --primary-color: #39072F;
+    --primary-color-transparent: #ffffff21;
     --accent-color: #F798F2;
     --background-color: #F5F5F5;
     --dimmed-text: #ffffffb3;
   }
 
+  body {
+    font-family: 'Lexend';
+  }
+
+
   .bg-primary {
     background-color: var(--primary-color);
+  }
+
+  .bg-primary-transparent {
+    background-color: var(--primary-color-transparent);
   }
 
   .bg-accent {
@@ -24,5 +39,9 @@
 
   .dimmed-text {
     background-color: var(--primary-color);
+  }
+
+  .text-primary-color {
+    color: var(--primary-color);
   }
 }
