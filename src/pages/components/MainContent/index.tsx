@@ -1,6 +1,6 @@
-import { Task } from "../../interfaces/task.ts";
-import { ResponsibleContainer } from "../../components/ResponsibleContainer.tsx";
-import { TaskCardView } from "./TaskCardView/index.tsx.tsx";
+import { Task } from "../../../interfaces/task.ts";
+import { ResponsibleContainer } from "../../../components/ResponsibleContainer.tsx";
+import { TaskCardView } from "./TaskCardView.tsx";
 
 export function MainContent() {
   const tasks: Array<Task> = [
