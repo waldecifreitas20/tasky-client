@@ -14,6 +14,8 @@ export function TaskCard(props: { task: Task }) {
         rounded-md 
         px-4 py-6 
         h-[400px]
+        sm:max-w-[400px]
+        md:max-w-[350px]
       ">
         <div>
           <div className="text-zinc-700 text-sm  flex justify-between">
