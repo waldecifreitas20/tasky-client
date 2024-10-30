@@ -16,12 +16,12 @@ export function AppHeader() {
 
   return (
     <>
-      <header className="bg-primary px-5 py-3 border-b border-white">
+      <header className="bg-primary px-5 py-3 border-b border-accent-transparent">
         <div className="
           flex 
           justify-between items-center 
-          max-w-xl 
           mx-auto
+          max-w-xl 
           sm:max-w-2xl
           md:max-w-4xl
           xl:max-w-6xl

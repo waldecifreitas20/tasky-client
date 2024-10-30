@@ -12,13 +12,15 @@
     --primary-color: #39072F;
     --dark-transparent: #ffffff13;
     --accent-color: #F798F2;
+    --accent-color-transparent: #f798f263;
+    --accent-color-dark: #f885f2;
     --background-color: #F5F5F5;
     --dimmed-text: #ffffffb3;
   }
 
   body {
     font-family: 'Lexend';
-    font-weight: 200;
+    font-weight: 300;
   }
 
 
@@ -31,7 +33,11 @@
   }
 
   .bg-accent {
-    background-color: var(--primary-color);
+    background-color: var(--accent-color);
+  }
+    
+  .bg-accent:hover {
+    background-color: var(--accent-color-dark);
   }
 
   .bg-color {
@@ -52,6 +58,15 @@
 
   .transparent-placeholder::placeholder {
     color: rgba(255, 255, 255, 0.20);
+  }
+
+
+  .border-primary {
+    border-color: var(--primary-color);
+  }
+
+  .border-accent-transparent {
+    border-color: var(--accent-color-transparent);
   }
 
 }
