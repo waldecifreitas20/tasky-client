@@ -14,7 +14,6 @@ export function Button(props: PropsWithChildren<ButtonProps>) {
         px-5 py-2
         rounded-sm
         hover:bg-dark
-        md:m-0
         
         ${props.backgroundColor ?? "bg-accent"}
         ${props.border ?? ""}

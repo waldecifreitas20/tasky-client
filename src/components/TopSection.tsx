@@ -16,7 +16,7 @@ export function TopSection(props: { username: string }) {
           <p className="opacity-75 mt-2 mb-7 lg:mb-0">Visualize e gerencie suas tarefas por aqui</p>
         </article>
 
-        <Button style="flex justify-between items-center">
+        <Button style="flex justify-between items-center md:mb-0">
           Nova Tarefa
           <i className="fa-solid fa-plus border-2 border-primary rounded-full p-1 ml-4"></i>
         </Button>
