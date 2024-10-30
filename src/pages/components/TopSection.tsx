@@ -1,5 +1,5 @@
-import { Button } from "./Button";
-import { ResponsibleContainer } from "./ResponsibleContainer";
+import { Button } from "../../components/Button";
+import { ResponsibleContainer } from "../../components/ResponsibleContainer";
 
 export function TopSection(props: { username: string }) {
   return (

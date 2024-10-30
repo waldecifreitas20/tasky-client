@@ -1,6 +1,6 @@
 import { useState, MouseEvent } from "react";
 import { SearchBar } from "./SearchBar"
-import { ResponsibleContainer } from "../ResponsibleContainer";
+import { ResponsibleContainer } from "../../../components/ResponsibleContainer";
 
 export function AppHeader() {
   const [dropdownVisibility, setVisibility] = useState(true);
