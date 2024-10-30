@@ -5,7 +5,7 @@ export function ResponsibleContainer(props: PropsWithChildren<{ style?: string }
     <>
       <div className={`
         flex 
-        justify-between items-center 
+    
         mx-auto
         max-w-lg 
         sm:max-w-2xl
