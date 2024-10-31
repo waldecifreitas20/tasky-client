@@ -3,7 +3,8 @@ import { PropsWithChildren } from "react";
 interface ButtonProps {
   style?: string,
   border?: string,
-  backgroundColor?: string
+  backgroundColor?: string,
+  onClick?: CallableFunction,
 }
 
 export function Button(props: PropsWithChildren<ButtonProps>) {
