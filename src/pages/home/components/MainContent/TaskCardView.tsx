@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { TaskCard } from "./TaskCard";
-import { Task } from "../../../interfaces/task";
+import { Task } from "../../../../interfaces/task";
 
 export function TaskCardView(props: PropsWithChildren<{ tasks: Array<Task> }>) {
   return (

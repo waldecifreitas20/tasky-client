@@ -1,5 +1,5 @@
-import { Task } from "../../../interfaces/task";
-import { Button } from "../../../components/Button";
+import { Task } from "../../../../interfaces/task";
+import { Button } from "../../../../components/Button";
 
 export function TaskCard(props: { task: Task }) {
   const { task } = props;

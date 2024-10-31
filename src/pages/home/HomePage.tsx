@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { AppHeader } from "./components/AppHeader";
+import { AppHeader } from "./components/AppHeader/index.tsx";
 import { TopSection } from "./components/TopSection.tsx";
-import { MainContent } from "./components/MainContent";
+import { MainContent } from "./components/MainContent/index.tsx";
 import { Footer } from "./components/Footer.tsx";
 
 export function HomePage() {
@@ -14,7 +14,7 @@ export function HomePage() {
         <TopSection username={username} />
         <MainContent />
       </div>
-      
+
       <div className="justify-self-end">
         <Footer />
       </div>

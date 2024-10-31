@@ -1,7 +1,7 @@
 import { useState, MouseEvent } from "react";
 import { SearchBar } from "./SearchBar"
-import { ResponsibleContainer } from "../../../components/ResponsibleContainer";
-import { Logo } from "../../../components/Logo";
+import { ResponsibleContainer } from "../../../../components/ResponsibleContainer";
+import { Logo } from "../../../../components/Logo";
 
 export function AppHeader() {
   const [dropdownVisibility, setVisibility] = useState(true);
@@ -21,7 +21,7 @@ export function AppHeader() {
       <header className="bg-primary px-5 py-3 border-b border-accent-transparent">
         <ResponsibleContainer style="justify-between items-center ">
           <a href="/">
-            <Logo isResponsible/>
+            <Logo isResponsible />
           </a>
 
           <SearchBar classes="w-[65%]" />
