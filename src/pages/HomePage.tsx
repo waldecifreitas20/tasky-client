@@ -8,11 +8,16 @@ export function HomePage() {
   const [username, setUsername] = useState('Carlos');
 
   return (
-    <>
-      <AppHeader />
-      <TopSection username={username} />
-      <MainContent />
-      <Footer />
-    </>
+    <div className="min-h-screen bg-neutral-50 flex flex-col justify-between">
+      <div>
+        <AppHeader />
+        <TopSection username={username} />
+        <MainContent />
+      </div>
+      
+      <div className="justify-self-end">
+        <Footer />
+      </div>
+    </div>
   );
 }

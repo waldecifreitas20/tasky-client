@@ -48,7 +48,7 @@ export function MainContent() {
 
   return (
     <>
-      <main className="px-4 py-6 md:px-8 bg-slate-50 ">
+      <main className="px-4 py-6 md:px-8">
         <ResponsibleContainer style="flex-col">
 
           <h1 className="mb-6 mt-4 text-3xl text-primary">Suas Tarefas</h1>
