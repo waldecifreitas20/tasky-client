@@ -10,12 +10,19 @@
 @layer utilities {
   :root {
     --primary-color: #39072F;
+    --primary-color-transparent: rgb(57, 7, 47,.5);
+
     --dark-transparent: #ffffff13;
+
     --accent-color: #F798F2;
     --accent-color-transparent: #f798f263;
     --accent-color-dark: #f885f2;
+
     --background-color: #F5F5F5;
     --dimmed-text: #ffffffb3;
+
+    --bg-login-primary: rgb(57, 7, 47, .8);
+    --bg-login-accent: rgb(169, 40, 163, .8);
   }
 
   body {
@@ -27,6 +34,10 @@
   .bg-primary {
     background-color: var(--primary-color);
   }
+  
+  .bg-primary-transparent {
+    background-color: var(--primary-color-transparent);
+  }
 
   .dark-transparent {
     background-color: var(--dark-transparent);
@@ -35,13 +46,13 @@
   .bg-accent {
     background-color: var(--accent-color);
   }
-    
-  .bg-accent:hover {
-    background-color: var(--accent-color-dark);
+  
+  .bg-accent-transparent {
+    background-color: var(--accent-color-transparent);
   }
 
-  .bg-color {
-    background-color: var(--primary-color);
+  .bg-accent:hover {
+    background-color: var(--accent-color-dark);
   }
 
   .dimmed-text {
@@ -60,6 +71,9 @@
     color: rgba(255, 255, 255, 0.20);
   }
 
+  .light-placeholder::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
 
   .border-primary {
     border-color: var(--primary-color);
@@ -67,6 +81,28 @@
 
   .border-accent-transparent {
     border-color: var(--accent-color-transparent);
+  }
+
+  #login-page {
+    background:
+      linear-gradient(var(--bg-login-primary),
+        var(--bg-login-accent) 50%,
+        var(--bg-login-primary)),
+      url("../public/bg-login-base.svg");
+    background-size: cover;
+  }
+
+  @media (min-width: 765px) {
+    #login-page {
+      background:
+        radial-gradient(circle at center,
+          var(--bg-login-accent),
+          var(--bg-login-primary) 50%
+          ),
+        url("../public/bg-login-base.svg");
+      background-size: cover;
+    }
+
   }
 
 }
