@@ -9,9 +9,6 @@ interface ButtonProps {
 }
 
 export function Button(props: PropsWithChildren<ButtonProps>) {
-
-  const voidClick = () => {};
-
   return (
     <>
       <button className={`
