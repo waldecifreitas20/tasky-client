@@ -1,14 +1,17 @@
-import { PropsWithChildren } from "react";
+import { MouseEventHandler, PropsWithChildren } from "react";
 
 interface ButtonProps {
   style?: string,
   border?: string,
   backgroundColor?: string,
-  onClick?: CallableFunction,
+  onClick?: MouseEventHandler,
   isSubmit?: boolean,
 }
 
 export function Button(props: PropsWithChildren<ButtonProps>) {
+
+  const voidClick = () => {};
+
   return (
     <>
       <button className={`
@@ -21,9 +24,10 @@ export function Button(props: PropsWithChildren<ButtonProps>) {
         ${props.style ?? ""}
       `}
         type={`${props.isSubmit ? "submit" : "button"}`}
+        onClick={props.onClick}
       >
-        {props.children}
-      </button>
+      {props.children}
+    </button >
     </>
   );
 }

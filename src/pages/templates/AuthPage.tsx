@@ -4,6 +4,7 @@ import { Divider } from "../../components/Divider";
 
 interface AuthPageTemplateProps {
   isLoginMode: boolean;
+  onSubmit?: VoidFunction;
 }
 
 export function AuthPageTemplate(props: AuthPageTemplateProps) {
@@ -21,6 +22,10 @@ export function AuthPageTemplate(props: AuthPageTemplateProps) {
     formTitle: props.isLoginMode ? "Login" : "Faça Seu Cadastro",
     submitButton: props.isLoginMode ? "Entrar" : "Cadastrar",
     bottomButton: props.isLoginMode ? "Cadastre-se" : "Faça Login",
+  }
+
+  const redirectToPage = () => {
+    location.pathname = props.isLoginMode ? "/sign-up" : "/login";
   }
 
   return (
@@ -71,19 +76,13 @@ export function AuthPageTemplate(props: AuthPageTemplateProps) {
           </form>
 
           <div className="px-2 w-full">
-            {
-              props.isLoginMode ? (
-                <>
-                  <div>Login com google</div>
-                </>
-              ) : <></>
-            }
-
+            <div>Login com google</div>
             <Divider margins="my-10 lg:my-6" />
             <Button
               style="w-full rounded-full py-3 text-white md:text-sm"
               backgroundColor="bg-white bg-opacity-10 hover:bg-accent-transparent"
               border="border-accent-transparent border"
+              onClick={redirectToPage}
             >{texts.bottomButton}
             </Button>
           </div>
