@@ -26,6 +26,11 @@ async function login(user: User) {
   }
 }
 
+
+function logout() {
+  Storage.remove("access_token");
+}
 export const AuthServices = {
   login,
+  logout,
 }

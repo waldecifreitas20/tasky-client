@@ -2,6 +2,7 @@ import { useState, MouseEvent } from "react";
 import { SearchBar } from "./SearchBar"
 import { ResponsibleContainer } from "../../../../components/ResponsibleContainer";
 import { Logo } from "../../../../components/Logo";
+import { AuthServices } from "../../../../services/login";
 
 export function AppHeader() {
   const [dropdownVisibility, setVisibility] = useState(true);
@@ -13,7 +14,8 @@ export function AppHeader() {
 
   const logoutUser = (evt: MouseEvent) => {
     evt.preventDefault();
-    alert("Usuario deslogado")
+    AuthServices.logout();
+    location.pathname = '/login';
   }
 
   return (
@@ -48,7 +50,14 @@ export function AppHeader() {
               ${dropdownVisibility ? 'hidden' : 'block'}
               `}
             >
-              <a href="" className="md:hidden block px-7 py-2 hover:bg-gray-100">Sair</a>
+              <button
+                className="
+                  md:hidden 
+                  block 
+                  px-7 py-2 
+                  hover:bg-gray-100"
+                onClick={logoutUser}
+              >Sair</button>
             </div>
           </div>
 
