@@ -1,13 +1,18 @@
 import { Button } from "../../components/Button";
 import { Logo } from "../../components/Logo";
 import { Divider } from "../../components/Divider";
+import { GoogleLoginButton } from "../login/components/GoogleButton";
+import { MouseEvent, useState } from "react";
 
 interface AuthPageTemplateProps {
   isLoginMode: boolean;
-  onSubmit?: VoidFunction;
+  onSubmit: CallableFunction;
 }
 
 export function AuthPageTemplate(props: AuthPageTemplateProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const inputStyle = `
     outline-none 
     rounded-sm 
@@ -28,6 +33,10 @@ export function AuthPageTemplate(props: AuthPageTemplateProps) {
     location.pathname = props.isLoginMode ? "/sign-up" : "/login";
   }
 
+  const onSubmit = (evt: MouseEvent) => {
+    props.onSubmit(evt, { email, password });
+  }
+
   return (
     <>
       <section id="login-page">
@@ -42,6 +51,7 @@ export function AuthPageTemplate(props: AuthPageTemplateProps) {
           mx-auto
           py-10 
           
+          md:max-w-[320px]
           md:justify-center
           md:py-6
           "
@@ -63,20 +73,33 @@ export function AuthPageTemplate(props: AuthPageTemplateProps) {
             <div className="my-10 gap-2 flex flex-col text-white">
               <input
                 className={inputStyle}
-                type="text"
-                placeholder="Nome de Usuário" />
+                type="email"
+                required
+                placeholder="Email"
+                onChange={(evt) => { setEmail(evt.target.value); }}
+              />
               <input
                 className={inputStyle}
                 type="password"
-                placeholder="Senha" />
+                required
+                placeholder="Senha"
+                onChange={(evt) => { setPassword(evt.target.value); }}
+              />
             </div>
 
-            <Button isSubmit style="w-full py-3 font-normal md:text-sm">{texts.submitButton}</Button>
+            <Button isSubmit
+              style="w-full py-3 font-normal md:text-sm"
+              onClick={onSubmit}
+            >{texts.submitButton}</Button>
 
           </form>
 
           <div className="px-2 w-full">
-            <div>Login com google</div>
+            {
+              props.isLoginMode ?
+                <GoogleLoginButton /> : <></>
+            }
+
             <Divider margins="my-10 lg:my-6" />
             <Button
               style="w-full rounded-full py-3 text-white md:text-sm"
