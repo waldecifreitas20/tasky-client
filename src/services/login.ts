@@ -10,6 +10,7 @@ async function login(user: User) {
 
   if (status === 200) {
     Storage.save('access_token', body.authorization);
+    Storage.save('username', body.username);
     return;
   }
 
@@ -37,13 +38,10 @@ async function isLoggedIn() {
   }
 }
 
-async function checkToken(token: string) {
-
-}
-
 function logout() {
   Storage.remove("access_token");
 }
+
 export const AuthServices = {
   login,
   logout,

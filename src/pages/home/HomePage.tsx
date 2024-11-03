@@ -4,11 +4,13 @@ import { TopSection } from "./components/TopSection.tsx";
 import { MainContent } from "./components/MainContent/index.tsx";
 import { Footer } from "./components/Footer.tsx";
 import { AuthServices } from "../../services/login.ts";
+import { Storage } from "../../services/storage.ts";
 
 export function HomePage() {
   const [username, setUsername] = useState('Carlos');
   const [isUserLoggedIn, setLoginStatus] = useState(false);
-  
+
+  // Check if user is authenticated
   useEffect(() => {
     AuthServices.isLoggedIn().then(isLogged => {
       if (!isLogged) {
@@ -16,9 +18,13 @@ export function HomePage() {
         location.pathname = "/login";
       } else {
         setLoginStatus(true);
+        const user = Storage.get("username");
+        setUsername(user ?? "Deu Errado");
       }
     });
   });
+
+
 
   if (!isUserLoggedIn) {
     return (<></>);  
