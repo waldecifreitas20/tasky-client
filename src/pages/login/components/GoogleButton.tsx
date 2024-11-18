@@ -1,12 +1,18 @@
 import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+import { AuthServices } from "../../../services/login";
 
 export function GoogleLoginButton() {
 
   const onSuccess = (response: any) => {
-    console.log("Login Deu certo");
-    const profile: any = jwtDecode(response.credential);
-    console.log(profile.username, profile.password);
+    const googleToken = response.credential;
+    AuthServices
+      .loginWithGoogle(googleToken)
+      .then(() => {
+        window.location.pathname = '/';
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   }
   const onError = () => {
     alert("Autenticação falhou. Faça login com email e senha ou cadastre-se")
@@ -17,6 +23,7 @@ export function GoogleLoginButton() {
       <GoogleLogin
         onSuccess={onSuccess}
         onError={onError}
+
       />
     </>
   );

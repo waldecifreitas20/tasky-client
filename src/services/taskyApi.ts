@@ -3,7 +3,7 @@ export interface TaskyApiGetRequest {
   authorization?: string,
 }
 export interface TaskyApiPostRequest extends TaskyApiGetRequest {
-  body: any;
+  body?: any;
 }
 
 async function GET(params: TaskyApiGetRequest) {
@@ -36,14 +36,14 @@ async function POST(params: TaskyApiPostRequest) {
     },
     body: JSON.stringify(params.body)
   }).then(async response => {
-    console.log(response);
+    console.error(response);
     
     return {
       status: response.status,
       body: await response.json()
     };
   }).catch((err) => {
-    console.log(err);
+    console.error(err);
     return {
       status: 502,
       body: "Deu merda"
