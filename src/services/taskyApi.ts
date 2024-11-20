@@ -46,7 +46,7 @@ async function POST(params: TaskyApiPostRequest) {
     console.error(err);
     return {
       status: 502,
-      body: "Deu merda"
+      body: err
     };
   });
 }

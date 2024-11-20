@@ -7,17 +7,34 @@ const saveCredentials = (accessToken: string, username: string) => {
   Storage.save('username', username);
 }
 
+type LoginResponseBody = {
+  authorization: string,
+  username: string
+}
+
+const handleLoginResponse = (
+  httpStatus: number,
+  responseBody: LoginResponseBody
+) => {
+
+  if (httpStatus === 200) {
+    return saveCredentials(responseBody.authorization, responseBody.username);
+  }
+
+  if (httpStatus === 401) {
+    throw new Error("Email ou senha inválidos!");
+  }
+
+  throw new Error("Não é possível realizar login. Verifique sua conexão");
+}
+
 async function login(user: User) {
   const { body, status } = await TaskyApi.POST({
     route: "user/login",
     body: user,
   });
 
-  if (status === 200) {
-    return saveCredentials(body.authorization, body.username);
-  }
-  
-  throw new Error("Email ou senha inválidos!");
+  return handleLoginResponse(status, body);
 }
 
 async function loginWithGoogle(googleToken: string) {
@@ -26,11 +43,7 @@ async function loginWithGoogle(googleToken: string) {
     authorization: googleToken,
   });
 
-  if (status === 200) {
-    return saveCredentials(body.authorization, body.username);
-  }
-
-  throw new Error("Email ou senha inválidos!");
+  return handleLoginResponse(status, body);
 }
 
 async function isLoggedIn() {
