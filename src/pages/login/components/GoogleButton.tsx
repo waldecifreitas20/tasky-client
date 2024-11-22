@@ -1,6 +1,7 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { AuthServices } from "../../../services/login";
 import { appEnvs } from "../../../services/dotenv";
+import { goToPage } from "../../../router";
 
 export function GoogleLoginButton() {
 
@@ -11,7 +12,7 @@ export function GoogleLoginButton() {
     AuthServices
       .loginWithGoogle(googleToken)
       .then(() => {
-        window.location.pathname = '/';
+        goToPage("/");
       })
       .catch((error) => {
         alert(error.message);

@@ -17,3 +17,9 @@ export const router = createBrowserRouter([
     element: <SignUpPage />
   },
 ]);
+
+export type AppPage = "/login" | "/sign-up" | "/";
+
+export const goToPage = (page: AppPage) => {
+  location.pathname = page;
+}
