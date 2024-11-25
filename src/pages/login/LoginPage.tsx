@@ -58,7 +58,7 @@ export function LoginPage() {
 
           <div className="px-2 w-full">
             <GoogleLoginButton />
-            <Divider margins="my-10 lg:my-6" />
+            <Divider margins="my-8 lg:my-6" />
             <Button
               style="w-full rounded-full py-3 text-white md:text-sm"
               backgroundColor="bg-white bg-opacity-10 hover:bg-accent-transparent"

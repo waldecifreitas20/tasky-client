@@ -17,7 +17,7 @@ export function AuthForm(props: AuthPageTemplateProps) {
       <form
         className="
           mt-16
-          mb-10
+          mb-4
           w-full
           bg-primary-transparent
           px-2 py-4
