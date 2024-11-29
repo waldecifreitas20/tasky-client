@@ -1,5 +1,5 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import { AuthServices } from "../../../services/login";
+import { AuthServices } from "../../../services/auth";
 import { appEnvs } from "../../../services/dotenv";
 import { goToPage } from "../../../router";
 

@@ -2,7 +2,7 @@ import { useState, MouseEvent } from "react";
 import { SearchBar } from "./SearchBar"
 import { ResponsibleContainer } from "../../../../components/ResponsibleContainer";
 import { Logo } from "../../../../components/Logo";
-import { AuthServices } from "../../../../services/login";
+import { AuthServices } from "../../../../services/auth";
 
 export function AppHeader() {
   const [dropdownVisibility, setVisibility] = useState(true);

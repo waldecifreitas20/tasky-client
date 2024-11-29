@@ -1,4 +1,4 @@
-import { User } from "../interfaces/user";
+import { UserCredentials, UserData } from "../interfaces/user";
 import { Storage } from "./storage";
 import { TaskyApi } from "./taskyApi";
 
@@ -28,7 +28,27 @@ const handleLoginResponse = (
   throw new Error("Não é possível realizar login. Verifique sua conexão");
 }
 
-async function login(user: User) {
+
+
+async function signUp(user: UserData) {
+  const { status, body } = await TaskyApi.POST({
+    route: "user/sign-up",
+    body: user,
+  });
+
+  if (status === 200) {
+    return saveCredentials(body.authorization, body.username);
+  }
+  console.log(body.error);
+
+  if (status === 400) {
+    throw new Error(body.error.message);
+  }
+
+  throw new Error("Não é possível realizar cadastro. Verifique sua conexão");
+}
+
+async function login(user: UserCredentials) {
   const { body, status } = await TaskyApi.POST({
     route: "user/login",
     body: user,
@@ -73,5 +93,6 @@ export const AuthServices = {
   login,
   logout,
   isLoggedIn,
-  loginWithGoogle
+  loginWithGoogle,
+  signUp,
 }

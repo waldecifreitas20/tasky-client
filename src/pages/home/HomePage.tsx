@@ -3,7 +3,7 @@ import { AppHeader } from "./components/AppHeader/index.tsx";
 import { TopSection } from "./components/TopSection.tsx";
 import { MainContent } from "./components/MainContent/index.tsx";
 import { Footer } from "./components/Footer.tsx";
-import { AuthServices } from "../../services/login.ts";
+import { AuthServices } from "../../services/auth.ts";
 import { Storage } from "../../services/storage.ts";
 
 export function HomePage() {
@@ -27,7 +27,7 @@ export function HomePage() {
 
 
   if (!isUserLoggedIn) {
-    return (<></>);  
+    return (<></>);
   }
 
   return (

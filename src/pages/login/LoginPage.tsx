@@ -1,5 +1,5 @@
 import { MouseEvent, useState } from "react";
-import { AuthServices } from "../../services/login";
+import { AuthServices } from "../../services/auth";
 import { GoogleLoginButton } from "./components/GoogleButton";
 import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
