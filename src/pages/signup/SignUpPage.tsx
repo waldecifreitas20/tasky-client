@@ -5,10 +5,12 @@ import { Button } from "../../components/Button";
 import { Logo } from "../../components/Logo";
 import { goToPage } from "../../router";
 import { useForm } from "react-hook-form";
+import isEmail from "validator/lib/isEmail";
+
 
 export function SignUpPage() {
   const { register, handleSubmit, formState } = useForm();
-
+  const { errors } = formState;
   const formStyle = `
   mt-16 mb-4 
   px-2 py-4 
@@ -21,6 +23,22 @@ export function SignUpPage() {
 
   const onSignUp = async (data: any) => {
     console.log(data);
+  }
+
+  const getPasswordError = () => {
+    if (errors.password?.type === "required") {
+      return "Senha é obrigatoria";
+    }
+    return "Senha deve conter entre 8 e 16 caracteres";
+
+  }
+
+  const getEmailError = () => {
+    if (errors.password?.type === "required") {
+      return "Email é obrigatoria";
+    }
+    return "Digite um email válido";
+
   }
 
   return (
@@ -52,24 +70,33 @@ export function SignUpPage() {
                 placeholder="Nome"
                 type="text"
                 register={register("username", { required: true })}
-                isValid={!!formState.errors.username}
+                isValid={!!errors.username}
                 errorMsg="Nome é obrigatorio"
               />
 
               <FormInput
                 type="email"
                 placeholder="Email"
-                register={register("email", { required: true })}
-                isValid={!!formState.errors.email}
-                errorMsg="Email é obrigatorio"
+                register={register("email", {
+                  required: true,
+                  validate: (email: string) => {
+                    return isEmail(email);
+                  }
+                })}
+                isValid={!!errors.email}
+                errorMsg={getEmailError()}
               />
 
               <FormInput
                 type="password"
                 placeholder="Senha"
-                register={register("password", { required: true })}
-                isValid={!!formState.errors.password}
-                errorMsg="Senha é obrigatoria"
+                isValid={!!errors.password}
+                errorMsg={getPasswordError()}
+                register={register("password", {
+                  required: true,
+                  minLength: 8,
+                  maxLength: 16
+                })}
               />
 
             </div>
