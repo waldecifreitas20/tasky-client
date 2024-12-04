@@ -1,28 +1,27 @@
-import { MouseEvent, useState } from "react";
-import { AuthServices } from "../../services/login";
+
 import { Divider } from "../../components/Divider";
+import { FormInput } from "../../components/FormInput";
 import { Button } from "../../components/Button";
 import { Logo } from "../../components/Logo";
-import { AuthForm } from "../templates/AuthForm";
-import { FormInput } from "../templates/FormInput";
 import { goToPage } from "../../router";
+import { useForm } from "react-hook-form";
 
 export function SignUpPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit, formState } = useForm();
 
-  const onSignUp = async (evt: MouseEvent) => {
-    evt.preventDefault();
+  const formStyle = `
+  mt-16 mb-4 
+  px-2 py-4 
+  w-full 
+  bg-primary-transparent 
+  text-white
+  rounded-md 
+  md:mt-8
+  `
 
-    try {
-      await AuthServices.login({ email, password });
-      goToPage("/sign-up");
-    } catch (error: any) {
-      alert(error.message);
-    }
+  const onSignUp = async (data: any) => {
+    console.log(data);
   }
-
 
   return (
     <>
@@ -45,20 +44,40 @@ export function SignUpPage() {
         >
           <Logo textSize="text-4xl" />
 
-          <AuthForm legend="Login" submitButton="Entrar" onSubmit={onSignUp}>
-            <FormInput
-              type="text"
-              placeholder="Nome"
-              onChange={(_name: string) => setName(_name)} />
-            <FormInput
-              type="email"
-              placeholder="Email"
-              onChange={(_email: string) => setEmail(_email)} />
-            <FormInput
-              type="password"
-              placeholder="Password"
-              onChange={(_pass: string) => setPassword(_pass)} />
-          </AuthForm>
+          <form className={formStyle} onSubmit={handleSubmit(onSignUp)}>
+            <legend className="text-2xl">Faça seu cadastro</legend>
+            <div className="my-10 gap-2 flex flex-col text-white">
+
+              <FormInput
+                placeholder="Nome"
+                type="text"
+                register={register("username", { required: true })}
+                isValid={!!formState.errors.username}
+                errorMsg="Nome é obrigatorio"
+              />
+
+              <FormInput
+                type="email"
+                placeholder="Email"
+                register={register("email", { required: true })}
+                isValid={!!formState.errors.email}
+                errorMsg="Email é obrigatorio"
+              />
+
+              <FormInput
+                type="password"
+                placeholder="Senha"
+                register={register("password", { required: true })}
+                isValid={!!formState.errors.password}
+                errorMsg="Senha é obrigatoria"
+              />
+
+            </div>
+            <Button
+              style="w-full py-3 font-normal md:text-sm"
+              onClick={handleSubmit(onSignUp)}
+            >Cadastre-se</Button>
+          </form>
 
           <div className="px-2 w-full">
             <Divider margins="my-0 lg:my-4" />
