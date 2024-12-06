@@ -83,7 +83,7 @@
     border-color: var(--accent-color-transparent);
   }
 
-  #login-page {
+  #auth-page {
     background:
       linear-gradient(var(--bg-login-primary),
         var(--bg-login-accent) 50%,
@@ -93,7 +93,7 @@
   }
 
   @media (min-width: 765px) {
-    #login-page {
+    #auth-page {
       background:
         radial-gradient(circle at center,
           var(--bg-login-accent),

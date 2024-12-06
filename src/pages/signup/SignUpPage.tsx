@@ -36,7 +36,7 @@ export function SignUpPage() {
 
   return (
     <>
-      <section id="login-page">
+      <section id="auth-page">
         <div
           className="
           text-white
