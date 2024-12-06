@@ -1,11 +1,14 @@
 import { AuthServices } from "../../services/auth";
 import { AuthPage } from "../templates/AuthPage";
 import { goToPage } from "../../router";
+
 import { AuthForm } from "../../components/forms/AuthForm";
+import { getEmailError, getPasswordError } from "../../utils/formErrorMsg";
 import { FormInput } from "../../components/forms/FormInput";
 import { GoogleLoginButton } from "./components/GoogleButton";
 import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
+
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
 import { FormPasswordInput } from "../../components/forms/FormPasswordInput";
@@ -26,24 +29,6 @@ export function LoginPage() {
     }
   }
 
-
-  const getPasswordError = () => {
-    if (errors.password?.type === "required") {
-      return "Senha é obrigatoria";
-    }
-    return "Senha deve conter entre 8 e 16 caracteres";
-
-  }
-
-  const getEmailError = () => {
-    if (errors.password?.type === "required") {
-      return "Email é obrigatorio";
-    }
-    return "Digite um email válido";
-
-  }
-
-
   return (
     <>
       <AuthPage>
@@ -62,17 +47,15 @@ export function LoginPage() {
               }
             })}
             isValid={!!errors.email}
-            errorMsg={getEmailError()}
+            errorMsg={getEmailError(errors.email?.type)}
           />
 
           <FormPasswordInput
             placeholder="Senha"
             isValid={!!errors.password}
-            errorMsg={getPasswordError()}
+            errorMsg={getPasswordError(errors.password?.type)}
             register={register("password", {
               required: true,
-              minLength: 8,
-              maxLength: 16
             })}
           />
         </AuthForm>

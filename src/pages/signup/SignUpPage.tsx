@@ -1,13 +1,16 @@
+import { useForm } from "react-hook-form";
+import { isEmail } from "validator";
 
-import { Divider } from "../../components/Divider";
-import { FormInput } from "../../components/forms/FormInput";
+import { goToPage } from "../../router";
+
 import { FormPasswordInput } from "../../components/forms/FormPasswordInput";
+import { getEmailError, getPasswordError } from "../../utils/formErrorMsg";
+import { FormInput } from "../../components/forms/FormInput";
+import { AuthForm } from "../../components/forms/AuthForm";
+import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
 import { Logo } from "../../components/Logo";
-import { goToPage } from "../../router";
-import { useForm } from "react-hook-form";
-import isEmail from "validator/lib/isEmail";
-import { AuthForm } from "../../components/forms/AuthForm";
+
 
 
 export function SignUpPage() {
@@ -16,22 +19,6 @@ export function SignUpPage() {
 
   const onSignUp = async (data: any) => {
     console.log(data);
-  }
-
-  const getPasswordError = () => {
-    if (errors.password?.type === "required") {
-      return "Senha é obrigatoria";
-    }
-    return "Senha deve conter entre 8 e 16 caracteres";
-
-  }
-
-  const getEmailError = () => {
-    if (errors.password?.type === "required") {
-      return "Email é obrigatorio";
-    }
-    return "Digite um email válido";
-
   }
 
   return (
@@ -78,13 +65,13 @@ export function SignUpPage() {
                 }
               })}
               isValid={!!errors.email}
-              errorMsg={getEmailError()}
+              errorMsg={getEmailError(errors.email?.type)}
             />
 
             <FormPasswordInput
               placeholder="Senha"
               isValid={!!errors.password}
-              errorMsg={getPasswordError()}
+              errorMsg={getPasswordError(errors.password?.type)}
               register={register("password", {
                 required: true,
                 minLength: 8,
