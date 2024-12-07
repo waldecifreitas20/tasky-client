@@ -7,18 +7,18 @@ const saveCredentials = (accessToken: string, username: string) => {
   Storage.save('username', username);
 }
 
-type LoginResponseBody = {
+type LoginResponse = {
   authorization: string,
   username: string
 }
 
 const handleLoginResponse = (
   httpStatus: number,
-  responseBody: LoginResponseBody
+  response: LoginResponse
 ) => {
 
   if (httpStatus === 200) {
-    return saveCredentials(responseBody.authorization, responseBody.username);
+    return saveCredentials(response.authorization, response.username);
   }
 
   if (httpStatus === 401) {
@@ -29,23 +29,26 @@ const handleLoginResponse = (
 }
 
 
-
 async function signUp(user: UserData) {
-  const { status, body } = await TaskyApi.POST({
-    route: "user/sign-up",
-    body: user,
-  });
+    const { status, body } = await TaskyApi.POST({
+      route: "user/sign-up",
+      body: user,
+    });
+    console.log(status);
+    console.log(body.error);
 
-  if (status === 200) {
-    return saveCredentials(body.authorization, body.username);
-  }
-  console.log(body.error);
 
-  if (status === 400) {
-    throw new Error(body.error.message);
-  }
-
-  throw new Error("Não é possível realizar cadastro. Verifique sua conexão");
+    if (status === 200) {
+      saveCredentials(body.authorization, body.username);
+      return;
+    }
+    console.log(body.error);
+    
+    if (status === 400) {
+      throw new Error("Conta de usuário já existente. Tente fazer login");
+    }
+ 
+    throw new Error("Não é possível realizar cadastro. Verifique sua conexão");
 }
 
 async function login(user: UserCredentials) {

@@ -10,13 +10,26 @@ import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
 import { Logo } from "../../components/Logo";
 
+import { AuthServices } from "../../services/auth";
+
 export function SignUpPage() {
   const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
 
   const onSignUp = async (data: any) => {
-    console.log(data);
+    const { username, password, email } = data;
+
+    try {
+      await AuthServices.signUp({
+        username, email, password
+      });
+      navigate("/");
+    } catch (error: any) {
+      console.log(error);
+
+      alert(error.message);
+    }
   }
 
   return (
