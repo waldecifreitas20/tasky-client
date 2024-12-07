@@ -1,29 +1,31 @@
 import { AuthServices } from "../../services/auth";
 import { AuthPage } from "../templates/AuthPage";
-import { goToPage } from "../../router";
 
-import { AuthForm } from "../../components/forms/AuthForm";
+import { FormPasswordInput } from "../../components/forms/FormPasswordInput";
 import { getEmailError, getPasswordError } from "../../utils/formErrorMsg";
-import { FormInput } from "../../components/forms/FormInput";
 import { GoogleLoginButton } from "./components/GoogleButton";
+import { FormInput } from "../../components/forms/FormInput";
+import { AuthForm } from "../../components/forms/AuthForm";
 import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
 
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
-import { FormPasswordInput } from "../../components/forms/FormPasswordInput";
 
 
 export function LoginPage() {
+  const navigate = useNavigate();
   const { handleSubmit, register, formState } = useForm();
   const { errors } = formState;
+
 
   const onLogin = async (data: any) => {
     const { email, password } = data;
 
     try {
       await AuthServices.login({ email, password });
-      goToPage("/");
+      navigate("/");
     } catch (error: any) {
       alert(error.message);
     }
@@ -34,8 +36,8 @@ export function LoginPage() {
       <AuthPage>
         <AuthForm
           onSubmit={handleSubmit(onLogin)}
-          buttonText="Cadastre-se"
-          legend="Faça Seu Cadastro"
+          buttonText="Entrar"
+          legend="Login"
         >
           <FormInput
             type="email"
@@ -55,7 +57,7 @@ export function LoginPage() {
             isValid={!!errors.password}
             errorMsg={getPasswordError(errors.password?.type)}
             register={register("password", {
-              required: true,
+              required: true
             })}
           />
         </AuthForm>
@@ -67,7 +69,7 @@ export function LoginPage() {
             style="w-full rounded-full py-3 text-white md:text-sm"
             backgroundColor="bg-white bg-opacity-10 hover:bg-accent-transparent"
             border="border-accent-transparent border"
-            onClick={() => { goToPage("/sign-up") }}
+            onClick={() => { navigate("/sign-up") }}
           >Cadastre-se</Button>
         </article>
 

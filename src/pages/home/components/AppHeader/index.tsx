@@ -3,8 +3,10 @@ import { SearchBar } from "./SearchBar"
 import { ResponsibleContainer } from "../../../../components/ResponsibleContainer";
 import { Logo } from "../../../../components/Logo";
 import { AuthServices } from "../../../../services/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 export function AppHeader() {
+  const navigate = useNavigate();
   const [dropdownVisibility, setVisibility] = useState(true);
 
   const toggleDropdown = (evt: MouseEvent) => {
@@ -15,16 +17,16 @@ export function AppHeader() {
   const logoutUser = (evt: MouseEvent) => {
     evt.preventDefault();
     AuthServices.logout();
-    location.pathname = '/login';
+    navigate("/login");
   }
 
   return (
     <>
       <header className="bg-primary px-5 py-3 border-b border-accent-transparent">
         <ResponsibleContainer style="justify-between items-center ">
-          <a href="/">
+          <Link to="/">
             <Logo isResponsible />
-          </a>
+          </Link>
 
           <SearchBar classes="w-[65%]" />
 

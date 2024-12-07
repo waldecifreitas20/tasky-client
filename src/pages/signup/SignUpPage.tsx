@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { isEmail } from "validator";
-
-import { goToPage } from "../../router";
 
 import { FormPasswordInput } from "../../components/forms/FormPasswordInput";
 import { getEmailError, getPasswordError } from "../../utils/formErrorMsg";
@@ -11,9 +10,8 @@ import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
 import { Logo } from "../../components/Logo";
 
-
-
 export function SignUpPage() {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
 
@@ -86,7 +84,7 @@ export function SignUpPage() {
               style="w-full rounded-full py-3 text-white md:text-sm"
               backgroundColor="bg-white bg-opacity-10 hover:bg-accent-transparent"
               border="border-accent-transparent border"
-              onClick={() => { goToPage("/login") }}
+              onClick={() => { navigate("/login") }}
             >Faça Login</Button>
           </div>
 

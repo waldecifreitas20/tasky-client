@@ -1,9 +1,11 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
 import { AuthServices } from "../../../services/auth";
 import { appEnvs } from "../../../services/dotenv";
-import { goToPage } from "../../../router";
+
 
 export function GoogleLoginButton() {
+  const navigate = useNavigate();
 
   const clientID = appEnvs.GOOGLE_CLIENT_ID;
 
@@ -12,7 +14,7 @@ export function GoogleLoginButton() {
     AuthServices
       .loginWithGoogle(googleToken)
       .then(() => {
-        goToPage("/");
+        navigate('/');
       })
       .catch((error) => {
         alert(error.message);
