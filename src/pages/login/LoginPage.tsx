@@ -1,11 +1,11 @@
 import { AuthServices } from "../../services/auth";
 import { AuthPage } from "../templates/AuthPage";
 
-import { FormPasswordInput } from "../../components/forms/FormPasswordInput";
+import { PasswordInput } from "../../components/forms/PasswordInput";
 import { getEmailError, getPasswordError } from "../../utils/formErrorMsg";
 import { GoogleLoginButton } from "./components/GoogleButton";
-import { FormInput } from "../../components/forms/FormInput";
-import { AuthForm } from "../../components/forms/AuthForm";
+import { FormInput } from "../../components/forms/Input";
+import { Form } from "../../components/forms/Form";
 import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
 
@@ -34,7 +34,7 @@ export function LoginPage() {
   return (
     <>
       <AuthPage>
-        <AuthForm
+        <Form
           onSubmit={handleSubmit(onLogin)}
           buttonText="Entrar"
           legend="Login"
@@ -52,7 +52,7 @@ export function LoginPage() {
             errorMsg={getEmailError(errors.email?.type)}
           />
 
-          <FormPasswordInput
+          <PasswordInput
             placeholder="Senha"
             isValid={!!errors.password}
             errorMsg={getPasswordError(errors.password?.type)}
@@ -60,7 +60,7 @@ export function LoginPage() {
               required: true
             })}
           />
-        </AuthForm>
+        </Form>
 
         <article className="px-2 w-full">
           <GoogleLoginButton />

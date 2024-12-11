@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { isEmail } from "validator";
 
-import { FormPasswordInput } from "../../components/forms/FormPasswordInput";
+import { PasswordInput } from "../../components/forms/PasswordInput";
 import { getEmailError, getPasswordError } from "../../utils/formErrorMsg";
-import { FormInput } from "../../components/forms/FormInput";
-import { AuthForm } from "../../components/forms/AuthForm";
+import { FormInput } from "../../components/forms/Input";
+import { Form } from "../../components/forms/Form";
 import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
 import { Logo } from "../../components/Logo";
@@ -53,7 +53,7 @@ export function SignUpPage() {
         >
           <Logo textSize="text-4xl" />
 
-          <AuthForm
+          <Form
             onSubmit={handleSubmit(onSignUp)}
             buttonText="Cadastre-se"
             legend="Faça Seu Cadastro"
@@ -79,7 +79,7 @@ export function SignUpPage() {
               errorMsg={getEmailError(errors.email?.type)}
             />
 
-            <FormPasswordInput
+            <PasswordInput
               placeholder="Senha"
               isValid={!!errors.password}
               errorMsg={getPasswordError(errors.password?.type)}
@@ -89,7 +89,7 @@ export function SignUpPage() {
                 maxLength: 16
               })}
             />
-          </AuthForm>
+          </Form>
 
           <div className="px-2 w-full">
             <Divider margins="my-0 lg:my-4" />

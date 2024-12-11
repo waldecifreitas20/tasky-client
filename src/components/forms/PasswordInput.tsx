@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-interface FormPasswordInputProps {
+interface PasswordInputProps {
   register: any,
   isValid: boolean,
   errorMsg: string,
@@ -8,7 +8,7 @@ interface FormPasswordInputProps {
 }
 
 
-export function FormPasswordInput(props: FormPasswordInputProps) {
+export function PasswordInput(props: PasswordInputProps) {
   const [isShowing, setView] = useState(false);
 
   const inputStyle = ` rounded-sm bg-accent-transparent light-placeholder md:text-sm`

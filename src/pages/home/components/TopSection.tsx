@@ -2,6 +2,11 @@ import { Button } from "../../../components/Button";
 import { ResponsibleContainer } from "../../../components/ResponsibleContainer";
 
 export function TopSection(props: { username: string }) {
+
+  const createTask = () => {
+    
+  }
+
   return (
     <div className="bg-primary md:px-8">
       <ResponsibleContainer

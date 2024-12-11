@@ -1,13 +1,13 @@
 import { Children, MouseEventHandler, PropsWithChildren } from "react";
 import { Button } from "../Button";
 
-interface AuthFormProps extends PropsWithChildren {
+interface FormProps extends PropsWithChildren {
   onSubmit?: MouseEventHandler,
   buttonText: string,
   legend?: string,
 }
 
-export function AuthForm(props: AuthFormProps) {
+export function Form(props: FormProps) {
 
   const formStyle = `
   mt-16 mb-4 
