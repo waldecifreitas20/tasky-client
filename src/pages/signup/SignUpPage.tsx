@@ -4,7 +4,7 @@ import { isEmail } from "validator";
 
 import { PasswordInput } from "../../components/forms/PasswordInput";
 import { getEmailError, getPasswordError } from "../../utils/formErrorMsg";
-import { FormInput } from "../../components/forms/Input";
+import { FormInput } from "../../components/forms/FormInput";
 import { Form } from "../../components/forms/Form";
 import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";

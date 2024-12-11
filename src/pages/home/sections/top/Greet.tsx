@@ -1,14 +1,10 @@
-import { Button } from "../../../components/Button";
-import { ResponsibleContainer } from "../../../components/ResponsibleContainer";
+import { Button } from "../../../../components/Button";
+import { ResponsibleContainer } from "../../components/ResponsibleContainer";
 
-export function TopSection(props: { username: string }) {
-
-  const createTask = () => {
-    
-  }
+export function Greet(props: { username: string }) {
 
   return (
-    <div className="bg-primary md:px-8">
+    <section className="bg-primary md:px-8">
       <ResponsibleContainer
         style="
           justify-between items-center 
@@ -26,6 +22,6 @@ export function TopSection(props: { username: string }) {
           <i className="fa-solid fa-plus border-2 border-primary rounded-full p-1 ml-4"></i>
         </Button>
       </ResponsibleContainer>
-    </div>
+    </section>
   );
 }

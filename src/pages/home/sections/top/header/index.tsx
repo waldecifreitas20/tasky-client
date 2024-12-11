@@ -1,8 +1,8 @@
 import { useState, MouseEvent } from "react";
 import { SearchBar } from "./SearchBar"
-import { ResponsibleContainer } from "../../../../components/ResponsibleContainer";
-import { Logo } from "../../../../components/Logo";
-import { AuthServices } from "../../../../services/auth";
+import { ResponsibleContainer } from "../../../components/ResponsibleContainer";
+import { Logo } from "../../../../../components/Logo";
+import { AuthServices } from "../../../../../services/auth";
 import { Link, useNavigate } from "react-router-dom";
 
 export function AppHeader() {

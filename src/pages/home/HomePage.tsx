@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { AppHeader } from "./components/AppHeader/index.tsx";
-import { TopSection } from "./components/TopSection.tsx";
-import { MainContent } from "./components/MainContent/index.tsx";
-import { Footer } from "./components/Footer.tsx";
+import { AppHeader } from "./sections/top/header/index.tsx";
+import { Greet } from "./sections/top/Greet.tsx";
+import { MainContent } from "./sections/main/index.tsx";
+import { Footer } from "./sections/footer/Footer.tsx";
 import { AuthServices } from "../../services/auth.ts";
 import { Storage } from "../../services/storage.ts";
 
@@ -34,7 +34,7 @@ export function HomePage() {
     <div className="min-h-screen bg-neutral-50 flex flex-col justify-between">
       <div>
         <AppHeader />
-        <TopSection username={username} />
+        <Greet username={username} />
         <MainContent />
       </div>
 

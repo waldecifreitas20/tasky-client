@@ -1,5 +1,5 @@
 import { Task } from "../../../../interfaces/task.ts";
-import { ResponsibleContainer } from "../../../../components/ResponsibleContainer.tsx";
+import { ResponsibleContainer } from "../../components/ResponsibleContainer.tsx";
 import { TaskCardView } from "./TaskCardView.tsx";
 
 export function MainContent() {

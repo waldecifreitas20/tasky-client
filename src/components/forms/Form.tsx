@@ -5,6 +5,7 @@ interface FormProps extends PropsWithChildren {
   onSubmit?: MouseEventHandler,
   buttonText: string,
   legend?: string,
+  style?: string, 
 }
 
 export function Form(props: FormProps) {
@@ -21,7 +22,7 @@ export function Form(props: FormProps) {
 
   return (
     <>
-      <form className={formStyle} >
+      <form className={formStyle + (props.style ?? "")} >
         <legend className="text-2xl">{props.legend}</legend>
         <div className="my-10 gap-2 flex flex-col text-white">
           {Children.map(props.children, (child) => {
