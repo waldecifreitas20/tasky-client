@@ -2,9 +2,9 @@ import { Children, MouseEventHandler, PropsWithChildren } from "react";
 import { Button } from "../Button";
 
 interface AuthFormProps extends PropsWithChildren {
-  onSubmit: MouseEventHandler,
+  onSubmit?: MouseEventHandler,
   buttonText: string,
-  legend: string,
+  legend?: string,
 }
 
 export function AuthForm(props: AuthFormProps) {

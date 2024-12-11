@@ -2,8 +2,8 @@ interface FormInputProps {
   register: any,
   isValid: boolean,
   errorMsg: string,
-  placeholder: string,
-  type: string,
+  placeholder?: string,
+  type?: string,
 }
 
 export function FormInput(props: FormInputProps) {
@@ -14,7 +14,7 @@ export function FormInput(props: FormInputProps) {
     <>
       <input
         className={!props.isValid ? inputStyle : errorStyle}
-        type={props.type}
+        type={props.type ?? "text"}
         placeholder={props.placeholder}
         {...props.register}
       />
