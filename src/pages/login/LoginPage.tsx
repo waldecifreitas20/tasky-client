@@ -12,6 +12,7 @@ import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
+import { AuthForm } from "../../components/forms/AuthForm";
 
 
 export function LoginPage() {
@@ -34,33 +35,33 @@ export function LoginPage() {
   return (
     <>
       <AuthPage>
-        <Form
-          onSubmit={handleSubmit(onLogin)}
-          buttonText="Entrar"
-          legend="Login"
-        >
-          <FormInput
-            type="email"
-            placeholder="Email"
-            register={register("email", {
-              required: true,
-              validate: (email: string) => {
-                return isEmail(email);
-              }
-            })}
-            isValid={!!errors.email}
-            errorMsg={getEmailError(errors.email?.type)}
-          />
+          <AuthForm
+            onSubmit={handleSubmit(onLogin)}
+            buttonText="Entrar"
+            legend="Login"
+          >
+            <FormInput
+              type="email"
+              placeholder="Email"
+              register={register("email", {
+                required: true,
+                validate: (email: string) => {
+                  return isEmail(email);
+                }
+              })}
+              isValid={!!errors.email}
+              errorMsg={getEmailError(errors.email?.type)}
+            />
 
-          <PasswordInput
-            placeholder="Senha"
-            isValid={!!errors.password}
-            errorMsg={getPasswordError(errors.password?.type)}
-            register={register("password", {
-              required: true
-            })}
-          />
-        </Form>
+            <PasswordInput
+              placeholder="Senha"
+              isValid={!!errors.password}
+              errorMsg={getPasswordError(errors.password?.type)}
+              register={register("password", {
+                required: true
+              })}
+            />
+          </AuthForm>
 
         <article className="px-2 w-full">
           <GoogleLoginButton />

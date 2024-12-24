@@ -11,6 +11,7 @@ import { Button } from "../../components/Button";
 import { Logo } from "../../components/Logo";
 
 import { AuthServices } from "../../services/auth";
+import { AuthForm } from "../../components/forms/AuthForm";
 
 export function SignUpPage() {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ export function SignUpPage() {
         >
           <Logo textSize="text-4xl" />
 
-          <Form
+          <AuthForm
             onSubmit={handleSubmit(onSignUp)}
             buttonText="Cadastre-se"
             legend="Faça Seu Cadastro"
@@ -89,7 +90,7 @@ export function SignUpPage() {
                 maxLength: 16
               })}
             />
-          </Form>
+          </AuthForm>
 
           <div className="px-2 w-full">
             <Divider margins="my-0 lg:my-4" />
