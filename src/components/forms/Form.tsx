@@ -20,12 +20,15 @@ export function Form(props: FormProps) {
   return (
     <>
       <form className={formStyle + (props.style ?? "")} >
+        
         <legend className={`text-2xl ${props.legendStyle ?? ""}`}>{props.legend}</legend>
+        
         <div className="my-10 gap-2 flex flex-col text-white">
           {Children.map(props.children, (child) => {
             return child;
           })}
         </div>
+
         <Button
           onClick={props.onSubmit}
           isSubmit
