@@ -5,7 +5,6 @@ import { isEmail } from "validator";
 import { PasswordInput } from "../../components/forms/PasswordInput";
 import { getEmailError, getPasswordError } from "../../utils/formErrorMsg";
 import { FormInput } from "../../components/forms/FormInput";
-import { Form } from "../../components/forms/Form";
 import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
 import { Logo } from "../../components/Logo";
@@ -18,7 +17,10 @@ export function SignUpPage() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
 
+  console.log(errors);
+  
   const onSignUp = async (data: any) => {
+
     const { username, password, email } = data;
 
     try {
@@ -63,7 +65,7 @@ export function SignUpPage() {
               placeholder="Nome"
               type="text"
               register={register("username", { required: true })}
-              isValid={!!errors.username}
+              isValid={!errors.username}
               errorMsg="Nome é obrigatorio"
             />
 
@@ -76,13 +78,13 @@ export function SignUpPage() {
                   return isEmail(email);
                 }
               })}
-              isValid={!!errors.email}
+              isValid={!errors.email}
               errorMsg={getEmailError(errors.email?.type)}
             />
 
             <PasswordInput
               placeholder="Senha"
-              isValid={!!errors.password}
+              isValid={!errors.password}
               errorMsg={getPasswordError(errors.password?.type)}
               register={register("password", {
                 required: true,

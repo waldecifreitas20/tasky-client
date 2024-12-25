@@ -5,7 +5,6 @@ import { PasswordInput } from "../../components/forms/PasswordInput";
 import { getEmailError, getPasswordError } from "../../utils/formErrorMsg";
 import { GoogleLoginButton } from "./components/GoogleButton";
 import { FormInput } from "../../components/forms/FormInput";
-import { Form } from "../../components/forms/Form";
 import { Divider } from "../../components/Divider";
 import { Button } from "../../components/Button";
 

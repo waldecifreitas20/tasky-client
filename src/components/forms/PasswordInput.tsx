@@ -20,7 +20,7 @@ export function PasswordInput(props: PasswordInputProps) {
 
   return (
     <>
-      <div className={`flex ${!props.isValid ? inputStyle : errorStyle}`}>
+      <div className={`flex ${props.isValid ? inputStyle : errorStyle}`}>
         <input
           className={"light-placeholder bg-transparent w-full p-0 outline-none py-3 px-2"}
           type={isShowing ? "text" : "password"}
@@ -38,7 +38,7 @@ export function PasswordInput(props: PasswordInputProps) {
         </button>
       </div>
       {
-        props.isValid ?
+        !props.isValid ?
           <p className="text-xs text-left text-red-400">{props.errorMsg}</p>
           : <></>
       }
