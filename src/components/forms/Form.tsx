@@ -23,7 +23,7 @@ export function Form(props: FormProps) {
         
         <legend className={`text-2xl ${props.legendStyle ?? ""}`}>{props.legend}</legend>
         
-        <div className="my-10 gap-2 flex flex-col text-white">
+        <div className="mb-6 gap-2 flex flex-col text-white">
           {Children.map(props.children, (child) => {
             return child;
           })}
