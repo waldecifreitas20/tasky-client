@@ -19,21 +19,32 @@ export function Modal(props: ModalProps) {
   return (
     <section
       className="
-      w-full h-full
+      w-full min-h-screen
       fixed
-      left-0 top-0 
-      overflow-hidden
-      flex justify-center items-center 
+      overflow-y-scroll
+      left-0 top-0 bottom-0
+      z-50 
+      flex justify-center items-start 
     ">
       <div
         className=" 
-        absolute
-        size-full
+        fixed
+        w-full
+        min-h-[100vh]
         bg-black bg-opacity-25
         ">
       </div>
 
-      <div className="bg-white z-50 rounded-md flex items-end p-4 flex-col">
+      <div
+        className="
+      bg-white z-50 
+      my-6
+      rounded-md 
+      flex 
+      items-end 
+      flex-col 
+      p-4 
+      ">
         {Children.map(props.children, (child) => child)}
       </div>
     </section>
