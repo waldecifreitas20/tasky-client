@@ -11,7 +11,7 @@ interface TaskFormProps {
 }
 
 export function TaskForm(props: TaskFormProps) {
-  const { register, formState, handleSubmit } = useForm();
+  const { register, formState, handleSubmit, } = useForm();
   const errors = formState.errors;
 
   return (
@@ -32,7 +32,10 @@ export function TaskForm(props: TaskFormProps) {
           >X</button>
 
           <Form
-            onSubmit={handleSubmit(props.onSubmit)}
+            onSubmit={handleSubmit(props.onSubmit, () => {
+              console.log(errors);
+
+            })}
             buttonText="Criar Tarefa"
             legend="Nova Tarefa"
             legendStyle="text-purple-800 font-normal text-3xl"
@@ -81,7 +84,7 @@ export function TaskForm(props: TaskFormProps) {
 
             <div className="w-48 block">
               <FormInput
-                register={register("date", { required: false })}
+                register={register("date", { required: true })}
                 type="date"
                 isValid={!errors.date}
                 label="Data*:"
@@ -91,7 +94,10 @@ export function TaskForm(props: TaskFormProps) {
               />
             </div>
 
-            <TimeScheduler />
+            <TimeScheduler
+              dateRegister={register("full_day")}
+              hourRegister={register("hour", { required: true })}
+            />
           </Form>
         </div>
       </Modal >
