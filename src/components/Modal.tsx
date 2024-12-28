@@ -1,20 +1,10 @@
-import { Children, PropsWithChildren, useState } from "react";
+import { Children, PropsWithChildren } from "react";
 
 interface ModalProps extends PropsWithChildren {
 
 }
 
 export function Modal(props: ModalProps) {
-
-  const [isShowing, setDisplay] = useState(true);
-
-  const dispose = () => {
-    setDisplay(false);
-  }
-
-  if (!isShowing) {
-    return <></>;
-  }
 
   return (
     <section
