@@ -19,7 +19,6 @@ export function LoginPage() {
   const { handleSubmit, register, formState } = useForm();
   const { errors } = formState;
 
-
   const onLogin = async (data: any) => {
     const { email, password } = data;
 
@@ -48,13 +47,13 @@ export function LoginPage() {
                   return isEmail(email);
                 }
               })}
-              isValid={!!errors.email}
+              isValid={!errors.email}
               errorMsg={getEmailError(errors.email?.type)}
             />
 
             <PasswordInput
               placeholder="Senha"
-              isValid={!!errors.password}
+              isValid={!errors.password}
               errorMsg={getPasswordError(errors.password?.type)}
               register={register("password", {
                 required: true
