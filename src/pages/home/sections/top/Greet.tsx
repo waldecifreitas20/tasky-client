@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "../../../../components/Button";
 import { ResponsibleContainer } from "../../components/ResponsibleContainer";
 import { TaskForm } from "../../components/TaskForm";
+import { Task } from "../../../../interfaces/task";
 
 export function Greet(props: { username: string }) {
   const [isModalOpen, setModal] = useState(false);
@@ -13,6 +14,11 @@ export function Greet(props: { username: string }) {
 
   const closeModal = () => {
     setModal(false);
+  }
+
+  const saveTask = (task: Task) => {
+    console.log(task);
+
   }
 
   return (
@@ -43,7 +49,10 @@ export function Greet(props: { username: string }) {
 
         {
           isModalOpen ?
-            <TaskForm onCancel={() => closeModal()} />
+            <TaskForm
+              onCancel={() => closeModal()}
+              onSubmit={saveTask}
+            />
             : <></>
         }
 

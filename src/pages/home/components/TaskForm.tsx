@@ -17,7 +17,7 @@ export function TaskForm(props: TaskFormProps) {
   return (
     <>
       <Modal>
-        <div className="w-[80vw] relative">
+        <div className="w-[80vw] sm:max-w-[400px] relative">
 
           <button
             className="
@@ -25,11 +25,11 @@ export function TaskForm(props: TaskFormProps) {
             ml-auto block 
             text-purple-400 
             hover:text-purple-600 
-            text-2xl"
+            text-2xl
+            z-50
+            "
             onClick={() => props.onCancel()}
-          >
-            <i className="fa-solid fa-x ml-2"></i>
-          </button>
+          >X</button>
 
           <Form
             onSubmit={handleSubmit(props.onSubmit)}

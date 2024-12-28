@@ -23,7 +23,7 @@ export function Modal(props: ModalProps) {
       fixed
       overflow-y-scroll
       left-0 top-0 bottom-0
-      z-50 
+      z-20 
       flex justify-center items-start 
     ">
       <div
@@ -37,7 +37,7 @@ export function Modal(props: ModalProps) {
 
       <div
         className="
-      bg-white z-50 
+      bg-white z-30 
       my-6
       rounded-md 
       flex 
