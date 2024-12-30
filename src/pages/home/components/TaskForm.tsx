@@ -43,7 +43,7 @@ export function TaskForm(props: TaskFormProps) {
           >
             <p
               className="text-black text-sm font-normal mb-3"
-            >Preencha todos os campos</p>
+            >Campos com astericos (*) são obrigatórios</p>
 
             <FormInput
               register={register("name", { required: true })}
