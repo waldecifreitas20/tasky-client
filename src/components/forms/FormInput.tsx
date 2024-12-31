@@ -1,5 +1,7 @@
+import { UseFormRegisterReturn } from "react-hook-form";
+
 interface FormInputProps {
-  register: any,
+  register: UseFormRegisterReturn,
   id?: string,
   isValid?: boolean,
   errorMsg?: string,
@@ -7,7 +9,7 @@ interface FormInputProps {
   type?: string,
   inputStyle?: string,
   label?: string,
-  labelStyle?: string,
+  labelStyle?: string
 }
 
 export function FormInput(props: FormInputProps) {

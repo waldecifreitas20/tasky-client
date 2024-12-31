@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { FormInput } from "../../../components/forms/FormInput";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface TimeSchedulerProps {
-  dateRegister: any,
-  hourRegister: any,
+  formRegister: UseFormRegister<FieldValues>,
+  formErrors: FieldErrors<FieldValues>,
 };
 
 export function TimeScheduler(props: TimeSchedulerProps) {
-  const [is_fullday, setIsFullday] = useState(true);
+  const [isFullDay, setIsFullDay] = useState(true);
 
   return (
     <>
@@ -15,9 +17,9 @@ export function TimeScheduler(props: TimeSchedulerProps) {
           id="full-day-checkbox"
           type="checkbox"
           className="w-fit"
-          checked={is_fullday}
-          onClick={() => { setIsFullday(!is_fullday) }}
-          {...props.dateRegister}
+          checked={isFullDay}
+          onClick={() => { setIsFullDay(!isFullDay) }}
+          {...props.formRegister("full_day")}
         />
         <label
           htmlFor="full-day-checkbox"
@@ -26,16 +28,17 @@ export function TimeScheduler(props: TimeSchedulerProps) {
       </div>
 
       {
-        is_fullday ? <></> :
-          <div className="text-black flex justify-start items-center">
-            <input
+        isFullDay ? <></> :
+          <div className="text-black flex flex-col gap-1 items-start justify-center w-52">
+            <FormInput
+              register={props.formRegister("hour", { required: true })}
               type="time"
-              min={0}
-              max={23}
-              className="bg-neutral-100 border w-50 pl-4"
-              {...props.hourRegister}
+              label="Horário*:"
+              labelStyle="text-neutral-700 text-sm"
+              inputStyle="bg-neutral-100 border"
+              isValid={!props.formErrors.hour}
+              errorMsg="Um horário precisa ser informado"
             />
-
           </div>
       }
 
