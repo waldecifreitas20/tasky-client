@@ -4,21 +4,25 @@ import { Button } from "../../../../components/Button";
 import { ResponsibleContainer } from "../../components/ResponsibleContainer";
 import { TaskForm } from "../../components/TaskForm";
 import { Task } from "../../../../interfaces/task";
+import { TaskServices } from "../../../../services/task";
+import { Storage } from "../../../../services/storage";
 
 export function Greet(props: { username: string }) {
   const [isModalOpen, setModal] = useState(false);
-  // alert('render')
-  const openModal = () => {
-    setModal(true);
-  }
 
-  const closeModal = () => {
-    setModal(false);
-  }
+  const openModal = () => setModal(true);
+  const closeModal = () => setModal(false);
 
-  const saveTask = (task: Task) => {
-    console.log(task);
 
+  const saveTask = async (task: Task) => {
+    const token = Storage.get("access_token") ?? "";
+    try {
+      await TaskServices.createTask(task, token);
+      alert("Tarefa Criada com sucesso!");
+      closeModal();
+    } catch (error: any) {
+      alert(error.message);
+    }
   }
 
   return (
