@@ -3,48 +3,7 @@ import { ResponsibleContainer } from "../../components/ResponsibleContainer.tsx"
 import { TaskCardView } from "./TaskCardView.tsx";
 
 export function MainContent() {
-  const tasks: Array<Task> = [
-    {
-      id: 0,
-      name: "Levar doguinho pro pet",
-      date: "01/05/2000",
-      desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Ad eligendi accusamus beatae tenetur illum quis tempora architecto,
-      repellendus cumque odit repellat dignissimos qui ducimus a dolores 
-      ab sapiente iste odio!`,
-      full_day: true,
-    },
-    {
-      id: 0,
-      name: "Levar doguinho pro pet",
-      date: "01/05/2000",
-      desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Ad eligendi accusamus beatae tenetur illum quis tempora architecto,
-      repellendus cumque odit repellat dignissimos qui ducimus a dolores 
-      ab sapiente iste odio!`,
-      full_day: true,
-    },
-    {
-      id: 0,
-      name: "Levar doguinho pro pet",
-      date: "01/05/2000",
-      desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Ad eligendi accusamus beatae tenetur illum quis tempora architecto,
-      repellendus cumque odit repellat dignissimos qui ducimus a dolores 
-      ab sapiente iste odio!`,
-      full_day: true,
-    },
-    {
-      id: 0,
-      name: "Levar doguinho pro pet",
-      date: "01/05/2000",
-      desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Ad eligendi accusamus beatae tenetur illum quis tempora architecto,
-      repellendus cumque odit repellat dignissimos qui ducimus a dolores 
-      ab sapiente iste odio!`,
-      full_day: true,
-    },
-  ];
+  const tasks: Array<Task> = [];
 
   return (
     <>
