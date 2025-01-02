@@ -15,7 +15,7 @@ export function Greet(props: { username: string }) {
 
   const saveTask = async (task: Task) => {
     try {
-      await TaskServices.createTask(task);
+      await TaskServices.create(task);
       alert("Tarefa Criada com sucesso!");
       closeModal();
     } catch (error: any) {

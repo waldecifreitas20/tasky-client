@@ -8,7 +8,7 @@ export function MainContent() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    TaskServices.getTasks()
+    TaskServices.getAll()
       .then((allTasks) => {
         setTasks(allTasks);
       }).finally(() => setIsLoading(false))

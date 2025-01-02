@@ -2,7 +2,7 @@ import { Task } from "../interfaces/task";
 import { Storage } from "./storage";
 import { TaskyApi } from "./taskyApi";
 
-async function createTask(task: Task) {
+async function create(task: Task) {
   const token = Storage.get("access_token") ?? "";
   const response = await TaskyApi.POST({
     route: "tasks/create",
@@ -16,7 +16,7 @@ async function createTask(task: Task) {
 }
 
 
-async function getTasks() {
+async function getAll() {
   const token = Storage.get("access_token") ?? "";
 
   const response = await TaskyApi.GET({
@@ -32,7 +32,12 @@ async function getTasks() {
 
 }
 
+async function update(task: Task) {
+  
+}
+
 export const TaskServices = {
-  createTask,
-  getTasks
+  create,
+  getAll,
+  update,
 }
