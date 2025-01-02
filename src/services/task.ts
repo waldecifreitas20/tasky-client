@@ -1,8 +1,9 @@
 import { Task } from "../interfaces/task";
+import { Storage } from "./storage";
 import { TaskyApi } from "./taskyApi";
 
-async function createTask(task: Task, token: string) {
-
+async function createTask(task: Task) {
+  const token = Storage.get("access_token") ?? "";
   const response = await TaskyApi.POST({
     route: "tasks/create",
     authorization: token,
@@ -14,6 +15,24 @@ async function createTask(task: Task, token: string) {
   }
 }
 
+
+async function getTasks() {
+  const token = Storage.get("access_token") ?? "";
+
+  const response = await TaskyApi.GET({
+    route: "tasks/all",
+    authorization: token,
+  });
+
+  try {
+    return response.body.tasks;
+  } catch (error) {
+    return [];
+  }
+
+}
+
 export const TaskServices = {
   createTask,
+  getTasks
 }

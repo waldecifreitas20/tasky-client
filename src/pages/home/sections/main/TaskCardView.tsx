@@ -3,7 +3,7 @@ import { TaskCard } from "./TaskCard";
 import { Task } from "../../../../interfaces/task";
 
 export function TaskCardView(props: PropsWithChildren<{ tasks: Array<Task> }>) {
-
+  
   const renderCards = () => {
     return props.tasks.map((task, key) => {
       return (

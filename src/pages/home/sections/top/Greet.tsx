@@ -5,7 +5,6 @@ import { ResponsibleContainer } from "../../components/ResponsibleContainer";
 import { TaskForm } from "../../components/TaskForm";
 import { Task } from "../../../../interfaces/task";
 import { TaskServices } from "../../../../services/task";
-import { Storage } from "../../../../services/storage";
 
 export function Greet(props: { username: string }) {
   const [isModalOpen, setModal] = useState(false);
@@ -15,9 +14,8 @@ export function Greet(props: { username: string }) {
 
 
   const saveTask = async (task: Task) => {
-    const token = Storage.get("access_token") ?? "";
     try {
-      await TaskServices.createTask(task, token);
+      await TaskServices.createTask(task);
       alert("Tarefa Criada com sucesso!");
       closeModal();
     } catch (error: any) {

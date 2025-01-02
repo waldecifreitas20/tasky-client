@@ -1,9 +1,22 @@
-import { Task } from "../../../../interfaces/task.ts";
+import { useEffect, useState } from "react";
 import { ResponsibleContainer } from "../../components/ResponsibleContainer.tsx";
 import { TaskCardView } from "./TaskCardView.tsx";
+import { TaskServices } from "../../../../services/task.ts";
 
 export function MainContent() {
-  const tasks: Array<Task> = [];
+  const [tasks, setTasks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    TaskServices.getTasks()
+      .then((allTasks) => {
+        setTasks(allTasks);
+      }).finally(() => setIsLoading(false))
+  });
+
+  if (isLoading) {
+    return <h1> Esta pagina esta carregando</h1>
+  }
 
   return (
     <>
