@@ -33,7 +33,7 @@ export function TaskForm(props: TaskFormProps) {
 
           <Form
             onSubmit={handleSubmit(props.onSubmit, () => {
-              console.log({errors});
+              console.log({ errors });
             })}
             buttonText="Criar Tarefa"
             legend="Nova Tarefa"

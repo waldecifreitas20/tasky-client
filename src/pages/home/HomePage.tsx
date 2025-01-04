@@ -5,6 +5,7 @@ import { MainContent } from "./sections/main/index.tsx";
 import { Footer } from "./sections/footer/Footer.tsx";
 import { AuthServices } from "../../services/auth.ts";
 import { Storage } from "../../services/storage.ts";
+import { TaskFormProvider } from "../../providers/TaskFormContext.tsx";
 
 export function HomePage() {
   const [username, setUsername] = useState('Carlos');
@@ -32,11 +33,11 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen bg-neutral-50 flex flex-col justify-between">
-      <div>
+      <TaskFormProvider>
         <AppHeader />
         <Greet username={username} />
         <MainContent />
-      </div>
+      </TaskFormProvider>
 
       <div className="justify-self-end">
         <Footer />

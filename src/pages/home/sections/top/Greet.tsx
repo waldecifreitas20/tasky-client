@@ -1,27 +1,11 @@
-import { useState } from "react";
-
+import { useContext } from "react";
 import { Button } from "../../../../components/Button";
 import { ResponsibleContainer } from "../../components/ResponsibleContainer";
-import { TaskForm } from "../../components/TaskForm";
-import { Task } from "../../../../interfaces/task";
-import { TaskServices } from "../../../../services/task";
+import { TaskFormContext } from "../../../../providers/TaskFormContext";
 
 export function Greet(props: { username: string }) {
-  const [isModalOpen, setModal] = useState(false);
 
-  const openModal = () => setModal(true);
-  const closeModal = () => setModal(false);
-
-
-  const saveTask = async (task: Task) => {
-    try {
-      await TaskServices.create(task);
-      alert("Tarefa Criada com sucesso!");
-      closeModal();
-    } catch (error: any) {
-      alert(error.message);
-    }
-  }
+  const taskForm = useContext(TaskFormContext);
 
   return (
     <>
@@ -42,21 +26,12 @@ export function Greet(props: { username: string }) {
 
           <Button
             style="flex justify-between items-center md:mb-0"
-            onClick={() => openModal()}
+            onClick={() => taskForm.open()}
           >
             Nova Tarefa
             <i className="fa-solid fa-plus border-2 border-primary rounded-full p-1 ml-4"></i>
           </Button>
         </ResponsibleContainer>
-
-        {
-          isModalOpen ?
-            <TaskForm
-              onCancel={() => closeModal()}
-              onSubmit={saveTask}
-            />
-            : <></>
-        }
 
       </section>
     </>
