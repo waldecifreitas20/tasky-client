@@ -43,9 +43,24 @@ async function update(task: Task) {
 
   console.log(response);
 
-
   if (response.status !== 200) {
     throw new Error("Não foi possível salvar a tarefa! Revise os campos ou tente mais tarde.");
+  }
+}
+
+
+async function deleteTask(taskId: number) {
+  const token = Storage.get("access_token") ?? "";
+
+  const response = await TaskyApi.DELETE({
+    route: `tasks/delete/${taskId}`,
+    authorization: token,
+  });
+
+  console.log(response);
+
+  if (response.status !== 204) {
+    throw new Error("Não foi possível deletar a tarefa! Tente mais tarde.");
   }
 }
 
@@ -53,4 +68,5 @@ export const TaskServices = {
   create,
   getAll,
   update,
+  deleteTask,
 }

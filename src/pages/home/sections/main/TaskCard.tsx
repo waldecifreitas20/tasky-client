@@ -2,10 +2,20 @@ import { Task } from "../../../../interfaces/task";
 import { Button } from "../../../../components/Button";
 import { useContext } from "react";
 import { TaskFormContext } from "../../../../providers/TaskFormContext";
+import { TaskServices } from "../../../../services/task";
 
 export function TaskCard(props: { task: Task }) {
   const { task } = props;
   const taskForm = useContext(TaskFormContext);
+
+  const deleteTask = async () => {
+    try {
+      await TaskServices.deleteTask(task.id);
+      alert("Tarefa Excluída com sucesso!")
+    } catch (error: any) {
+      alert(error.message);
+    }
+  }
 
   return (
     <>
@@ -40,6 +50,7 @@ export function TaskCard(props: { task: Task }) {
             style="py-3 w-full md:py-2 lg:text-sm"
             backgroundColor="bg-white hover:bg-pink-100 "
             border="border border-primary"
+            onClick={() => deleteTask()}
           >Deletar Tarefa</Button>
         </div>
       </article>

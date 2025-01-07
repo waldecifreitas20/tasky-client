@@ -17,15 +17,18 @@ export const TaskFormContext = createContext({
 export function TaskFormProvider(props: PropsWithChildren) {
   const [isModalOpen, setModalDisplay] = useState(false);
   const [task, setTask] = useState<null | Task>(null);
-
-  const open = () => setModalDisplay(true);
-  const close = () => setModalDisplay(false);
-
+  
+  const open = () => {
+    setTask(null);
+    setModalDisplay(true);
+  }
   const openEditable = (data: Task) => {
     setTask(data);
-    open();
+    setModalDisplay(true);
   }
-
+  
+  const close = () => setModalDisplay(false);
+  const isEditMode = () => !!task;
 
   const createTask = async (task: Task) => {
     try {
@@ -46,8 +49,6 @@ export function TaskFormProvider(props: PropsWithChildren) {
       alert(error.message);
     }
   }
-
-  const isEditMode = () => !!task;
 
 
   return (

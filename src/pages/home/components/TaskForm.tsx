@@ -17,7 +17,8 @@ interface TaskFormProps {
 export function TaskForm(props: TaskFormProps) {
   const { register, formState, handleSubmit } = useForm();
   const errors = formState.errors;
-  
+  console.log(props.data);
+
   return (
     <>
       <Modal>
@@ -39,8 +40,8 @@ export function TaskForm(props: TaskFormProps) {
             onSubmit={handleSubmit(props.onSubmit, () => {
               console.log({ errors });
             })}
-            buttonText={props.isEditMode? "Salvar" : "Criar Tarefa"}
-            legend={props.isEditMode? "Alterar Tarefa" : "Nova Tarefa"}
+            buttonText={props.isEditMode ? "Salvar" : "Criar Tarefa"}
+            legend={props.isEditMode ? "Alterar Tarefa" : "Nova Tarefa"}
             legendStyle="text-purple-800 font-normal text-3xl"
             style="text-purple-400 bg-white"
           >

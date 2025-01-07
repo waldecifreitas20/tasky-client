@@ -77,8 +77,32 @@ async function PATCH(params: TaskyApiPatchRequest) {
   });
 }
 
+async function DELETE(params: TaskyApiPatchRequest) {
+  return await fetch(`http://localhost:3000/${params.route}`, {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': params.authorization ?? ""
+    },
+  }).then(async response => {
+    console.error(response);
+
+    return {
+      status: response.status,
+      body: await response.json()
+    };
+  }).catch((err) => {
+    console.error(err);
+    return {
+      status: 502,
+      body: err
+    };
+  });
+}
+
 export const TaskyApi = {
   GET,
   POST,
   PATCH,
+  DELETE,
 }
