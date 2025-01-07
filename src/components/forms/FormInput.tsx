@@ -1,18 +1,25 @@
+import { useState } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 interface FormInputProps {
   register: UseFormRegisterReturn,
   id?: string,
-  isValid?: boolean,
-  errorMsg?: string,
-  placeholder?: string,
   type?: string,
   inputStyle?: string,
-  label?: string,
   labelStyle?: string
+
+  isValid?: boolean,
+  errorMsg?: string,
+
+  label?: string,
+  placeholder?: string,
+  value?: string,
+  onChange?: CallableFunction,
 }
 
 export function FormInput(props: FormInputProps) {
+  const [value, setValue] = useState(props.value);
+  alert("rendered")
   const id = props.id ?? `input-${Math.random()}`;
 
   const bgStyle = props.inputStyle ?? "bg-accent-transparent light-placeholder";
@@ -35,6 +42,12 @@ export function FormInput(props: FormInputProps) {
         type={props.type ?? "text"}
         placeholder={props.placeholder ?? ""}
         {...props.register}
+        value={value}
+        onChange={(evt) => {
+          if (!!value) {
+            setValue(evt.target.value);
+          }
+        }}
       />
       {
         !props.isValid ?

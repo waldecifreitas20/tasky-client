@@ -6,19 +6,26 @@ import { Task } from "../interfaces/task";
 
 export interface TaskFormActions {
   open: CallableFunction
+  openEditable: CallableFunction
 };
 
-const context: TaskFormActions = {
+export const TaskFormContext = createContext({
   open: () => { },
-};
-
-export const TaskFormContext = createContext(context);
+  openEditable: (data: Task) => { }
+});
 
 export function TaskFormProvider(props: PropsWithChildren) {
   const [isModalOpen, setModalDisplay] = useState(false);
+  const [task, setTask] = useState<null | Task>(null);
+
 
   const open = () => setModalDisplay(true);
   const close = () => setModalDisplay(false);
+
+  const openEditable = (data: Task) => {
+    setTask(data)
+    open();
+  }
 
   const save = async (task: Task) => {
     try {
@@ -31,12 +38,13 @@ export function TaskFormProvider(props: PropsWithChildren) {
   }
 
   return (
-    <TaskFormContext.Provider value={{ open }} >
+    <TaskFormContext.Provider value={{ open, openEditable }} >
       {
         isModalOpen ?
           <TaskForm
             onCancel={() => close()}
             onSubmit={save}
+            data={task}
           />
           : <></>
       }

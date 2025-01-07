@@ -4,16 +4,26 @@ import { Form } from "../../../components/forms/Form";
 import { Modal } from "../../../components/Modal";
 import { FormInput } from "../../../components/forms/FormInput";
 import { TimeScheduler } from "./TimeScheduler";
+import { Task } from "../../../interfaces/task";
+import { useState } from "react";
 
 interface TaskFormProps {
   onCancel: CallableFunction,
   onSubmit: SubmitHandler<any>,
+  data?: Task | null,
 }
 
 export function TaskForm(props: TaskFormProps) {
+  const [data, setData] = useState({
+    name: props.data?.name ?? "",
+    desc: props.data?.desc ?? "",
+    full_day: props.data?.full_day ?? true,
+    hour: props.data?.hour,
+    date: props.data?.date,
+  });
+
   const { register, formState, handleSubmit } = useForm();
   const errors = formState.errors;
-
   return (
     <>
       <Modal>
@@ -47,6 +57,7 @@ export function TaskForm(props: TaskFormProps) {
             <FormInput
               register={register("name", { required: true })}
               isValid={!errors.name}
+
               label="Nome da Tarefa*:"
               labelStyle="text-black text-sm text-neutral-700"
               errorMsg="Campo obrigatório"
@@ -63,6 +74,13 @@ export function TaskForm(props: TaskFormProps) {
                 {...register("desc", { required: false })}
                 style={{ resize: "none" }}
                 rows={4}
+                value={data.desc}
+                onChange={(evt) => {
+                  setData({
+                    ...data,
+                    desc: evt.target.value
+                  })
+                }}
                 maxLength={150}
                 id="desc"
                 name="desc"
