@@ -18,7 +18,6 @@ export function TaskFormProvider(props: PropsWithChildren) {
   const [isModalOpen, setModalDisplay] = useState(false);
   const [task, setTask] = useState<null | Task>(null);
 
-
   const open = () => setModalDisplay(true);
   const close = () => setModalDisplay(false);
 
@@ -26,6 +25,7 @@ export function TaskFormProvider(props: PropsWithChildren) {
     setTask(data)
     open();
   }
+  
 
   const save = async (task: Task) => {
     try {

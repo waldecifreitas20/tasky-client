@@ -1,8 +1,12 @@
 import { Task } from "../../../../interfaces/task";
 import { Button } from "../../../../components/Button";
+import { useContext } from "react";
+import { TaskFormContext } from "../../../../providers/TaskFormContext";
 
 export function TaskCard(props: { task: Task }) {
   const { task } = props;
+  const taskForm = useContext(TaskFormContext);
+
   return (
     <>
       <article className="
@@ -30,6 +34,7 @@ export function TaskCard(props: { task: Task }) {
         <div>
           <Button
             style="py-3 w-full mb-2 md:py-2 lg:text-sm"
+            onClick={() => taskForm.openEditable(task)}
           >Editar</Button>
           <Button
             style="py-3 w-full md:py-2 lg:text-sm"

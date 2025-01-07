@@ -19,7 +19,6 @@ interface FormInputProps {
 
 export function FormInput(props: FormInputProps) {
   const [value, setValue] = useState(props.value);
-  alert("rendered")
   const id = props.id ?? `input-${Math.random()}`;
 
   const bgStyle = props.inputStyle ?? "bg-accent-transparent light-placeholder";

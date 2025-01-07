@@ -5,7 +5,7 @@ import { Modal } from "../../../components/Modal";
 import { FormInput } from "../../../components/forms/FormInput";
 import { TimeScheduler } from "./TimeScheduler";
 import { Task } from "../../../interfaces/task";
-import { useState } from "react";
+import { FormTextBox } from "../../../components/forms/FormTextBox";
 
 interface TaskFormProps {
   onCancel: CallableFunction,
@@ -14,13 +14,7 @@ interface TaskFormProps {
 }
 
 export function TaskForm(props: TaskFormProps) {
-  const [data, setData] = useState({
-    name: props.data?.name ?? "",
-    desc: props.data?.desc ?? "",
-    full_day: props.data?.full_day ?? true,
-    hour: props.data?.hour,
-    date: props.data?.date,
-  });
+  console.log(props.data);
 
   const { register, formState, handleSubmit } = useForm();
   const errors = formState.errors;
@@ -56,53 +50,24 @@ export function TaskForm(props: TaskFormProps) {
 
             <FormInput
               register={register("name", { required: true })}
+              value={props.data?.name}
               isValid={!errors.name}
-
               label="Nome da Tarefa*:"
               labelStyle="text-black text-sm text-neutral-700"
               errorMsg="Campo obrigatório"
               inputStyle="bg-neutral-100 border text-black"
             />
 
-            <div>
-              <label
-                htmlFor="desc"
-                className="text-neutral-700 text-sm "
-              >Descrição:</label>
-
-              <textarea
-                {...register("desc", { required: false })}
-                style={{ resize: "none" }}
-                rows={4}
-                value={data.desc}
-                onChange={(evt) => {
-                  setData({
-                    ...data,
-                    desc: evt.target.value
-                  })
-                }}
-                maxLength={150}
-                id="desc"
-                name="desc"
-                className="
-                block
-                w-full
-                outline-none 
-                rounded-sm 
-                py-3 px-2 
-                border 
-                bg-neutral-100 
-                text-black
-                
-                md:text-sm 
-                "
-              ></textarea>
-            </div>
+            <FormTextBox
+              register={register("desc", { required: false })}
+              text={props.data?.desc}
+            />
 
             <div className="w-48 block">
               <FormInput
                 register={register("date", { required: true })}
                 type="date"
+                value={props.data?.date}
                 isValid={!errors.date}
                 label="Data*:"
                 labelStyle="text-black text-sm text-neutral-700"
@@ -114,6 +79,8 @@ export function TaskForm(props: TaskFormProps) {
             <TimeScheduler
               formRegister={register}
               formErrors={errors}
+              initialHour={props.data?.hour}
+              initialState={props.data?.full_day}
             />
           </Form>
         </div>

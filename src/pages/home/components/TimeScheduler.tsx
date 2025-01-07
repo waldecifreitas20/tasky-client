@@ -5,10 +5,12 @@ import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 interface TimeSchedulerProps {
   formRegister: UseFormRegister<FieldValues>,
   formErrors: FieldErrors<FieldValues>,
+  initialState?: boolean,
+  initialHour?: string,
 };
 
 export function TimeScheduler(props: TimeSchedulerProps) {
-  const [isFullDay, setIsFullDay] = useState(true);
+  const [isFullDay, setIsFullDay] = useState(props.initialState ?? true);
 
   return (
     <>
@@ -34,6 +36,7 @@ export function TimeScheduler(props: TimeSchedulerProps) {
               register={props.formRegister("hour", { required: true })}
               type="time"
               label="Horário*:"
+              value={props.initialHour}
               labelStyle="text-neutral-700 text-sm"
               inputStyle="bg-neutral-100 border"
               isValid={!props.formErrors.hour}
