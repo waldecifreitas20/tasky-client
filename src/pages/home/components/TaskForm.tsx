@@ -11,13 +11,13 @@ interface TaskFormProps {
   onCancel: CallableFunction,
   onSubmit: SubmitHandler<any>,
   data?: Task | null,
+  isEditMode?: boolean
 }
 
 export function TaskForm(props: TaskFormProps) {
-  console.log(props.data);
-
   const { register, formState, handleSubmit } = useForm();
   const errors = formState.errors;
+  
   return (
     <>
       <Modal>
@@ -39,8 +39,8 @@ export function TaskForm(props: TaskFormProps) {
             onSubmit={handleSubmit(props.onSubmit, () => {
               console.log({ errors });
             })}
-            buttonText="Criar Tarefa"
-            legend="Nova Tarefa"
+            buttonText={props.isEditMode? "Salvar" : "Criar Tarefa"}
+            legend={props.isEditMode? "Alterar Tarefa" : "Nova Tarefa"}
             legendStyle="text-purple-800 font-normal text-3xl"
             style="text-purple-400 bg-white"
           >

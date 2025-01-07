@@ -5,6 +5,8 @@ export interface TaskyApiGetRequest {
 export interface TaskyApiPostRequest extends TaskyApiGetRequest {
   body?: any;
 }
+export interface TaskyApiPatchRequest extends TaskyApiPostRequest {}
+
 
 async function GET(params: TaskyApiGetRequest) {
   return await fetch(`http://localhost:3000/${params.route}`, {
@@ -37,7 +39,31 @@ async function POST(params: TaskyApiPostRequest) {
     body: JSON.stringify(params.body)
   }).then(async response => {
     console.error(response);
-    
+
+    return {
+      status: response.status,
+      body: await response.json()
+    };
+  }).catch((err) => {
+    console.error(err);
+    return {
+      status: 502,
+      body: err
+    };
+  });
+}
+
+async function PATCH(params: TaskyApiPatchRequest) {
+  return await fetch(`http://localhost:3000/${params.route}`, {
+    method: "PATCH",
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': params.authorization ?? ""
+    },
+    body: JSON.stringify(params.body)
+  }).then(async response => {
+    console.error(response);
+
     return {
       status: response.status,
       body: await response.json()
@@ -54,4 +80,5 @@ async function POST(params: TaskyApiPostRequest) {
 export const TaskyApi = {
   GET,
   POST,
+  PATCH,
 }

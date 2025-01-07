@@ -1,4 +1,4 @@
-import { Children, createContext, PropsWithChildren, useState } from "react";
+import { Children, createContext, PropsWithChildren, useRef, useState } from "react";
 import { TaskForm } from "../pages/home/components/TaskForm";
 import { TaskServices } from "../services/task";
 import { Task } from "../interfaces/task";
@@ -22,12 +22,12 @@ export function TaskFormProvider(props: PropsWithChildren) {
   const close = () => setModalDisplay(false);
 
   const openEditable = (data: Task) => {
-    setTask(data)
+    setTask(data);
     open();
   }
-  
 
-  const save = async (task: Task) => {
+
+  const createTask = async (task: Task) => {
     try {
       await TaskServices.create(task);
       alert("Tarefa Criada com sucesso!");
@@ -37,14 +37,28 @@ export function TaskFormProvider(props: PropsWithChildren) {
     }
   }
 
+  const updateTask = async (data: Task) => {
+    try {
+      await TaskServices.update({ ...data, id: task?.id ?? 0 });
+      alert("Tarefa salva com sucesso!");
+      close();
+    } catch (error: any) {
+      alert(error.message);
+    }
+  }
+
+  const isEditMode = () => !!task;
+
+
   return (
     <TaskFormContext.Provider value={{ open, openEditable }} >
       {
         isModalOpen ?
           <TaskForm
             onCancel={() => close()}
-            onSubmit={save}
+            onSubmit={isEditMode() ? updateTask : createTask}
             data={task}
+            isEditMode={isEditMode()}
           />
           : <></>
       }

@@ -33,7 +33,20 @@ async function getAll() {
 }
 
 async function update(task: Task) {
-  
+  const token = Storage.get("access_token") ?? "";
+
+  const response = await TaskyApi.PATCH({
+    route: `tasks/update/${task.id}`,
+    authorization: token,
+    body: task,
+  });
+
+  console.log(response);
+
+
+  if (response.status !== 200) {
+    throw new Error("Não foi possível salvar a tarefa! Revise os campos ou tente mais tarde.");
+  }
 }
 
 export const TaskServices = {
