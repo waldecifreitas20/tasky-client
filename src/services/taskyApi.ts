@@ -5,7 +5,7 @@ export interface TaskyApiGetRequest {
 export interface TaskyApiPostRequest extends TaskyApiGetRequest {
   body?: any;
 }
-export interface TaskyApiPatchRequest extends TaskyApiPostRequest {}
+export interface TaskyApiPatchRequest extends TaskyApiPostRequest { }
 
 
 async function GET(params: TaskyApiGetRequest) {
@@ -86,11 +86,16 @@ async function DELETE(params: TaskyApiPatchRequest) {
     },
   }).then(async response => {
     console.error(response);
-
-    return {
-      status: response.status,
-      body: await response.json()
-    };
+    try {
+      return {
+        status: response.status,
+        body: await response.json()
+      }
+    } catch (error) {
+      return {
+        status: response.status,
+      }
+    }
   }).catch((err) => {
     console.error(err);
     return {
