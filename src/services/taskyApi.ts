@@ -8,100 +8,80 @@ export interface TaskyApiPostRequest extends TaskyApiGetRequest {
 export interface TaskyApiPatchRequest extends TaskyApiPostRequest { }
 
 
-async function GET(params: TaskyApiGetRequest) {
+export interface TaskyApiBaseResquest {
+  route: string,
+  method: string,
+  token?: string,
+  onSuccess?: any,
+}
+
+
+async function request(params: TaskyApiBaseResquest) {
   return await fetch(`http://localhost:3000/${params.route}`, {
-    method: "GET",
+    method: params.method,
     headers: {
       'Content-Type': 'application/json',
-      'authorization': params.authorization ?? ""
-    },
-  }).then(async response => {
-    return {
-      status: response.status,
-      body: await response.json()
-    };
-  }).catch((err) => {
-    console.log(err);
-    return {
-      status: 502,
-      body: "Deu merda"
-    };
+      'authorization': params.token ?? ""
+    }
+  })
+    .then(params.onSuccess ?? (
+      async (response: any) => {
+        return {
+          status: response.status,
+          body: await response.json()
+        }
+      }))
+    .catch((err) => {
+      console.error(err);
+      return {
+        status: 502,
+        body: err
+      };
+    });
+}
+
+async function GET(params: TaskyApiGetRequest) {
+  return await request({
+    route: params.route,
+    method: "GET",
+    token: params.authorization
   });
 }
 
 async function POST(params: TaskyApiPostRequest) {
-  return await fetch(`http://localhost:3000/${params.route}`, {
+  return await request({
+    route: params.route,
     method: "POST",
-    headers: {
-      'Content-Type': 'application/json',
-      'authorization': params.authorization ?? ""
-    },
-    body: JSON.stringify(params.body)
-  }).then(async response => {
-    console.error(response);
-
-    return {
-      status: response.status,
-      body: await response.json()
-    };
-  }).catch((err) => {
-    console.error(err);
-    return {
-      status: 502,
-      body: err
-    };
+    token: params.authorization,
   });
 }
 
 async function PATCH(params: TaskyApiPatchRequest) {
-  return await fetch(`http://localhost:3000/${params.route}`, {
+  return await request({
+    route: params.route,
     method: "PATCH",
-    headers: {
-      'Content-Type': 'application/json',
-      'authorization': params.authorization ?? ""
-    },
-    body: JSON.stringify(params.body)
-  }).then(async response => {
-    console.error(response);
-
-    return {
-      status: response.status,
-      body: await response.json()
-    };
-  }).catch((err) => {
-    console.error(err);
-    return {
-      status: 502,
-      body: err
-    };
+    token: params.authorization
   });
 }
 
 async function DELETE(params: TaskyApiPatchRequest) {
-  return await fetch(`http://localhost:3000/${params.route}`, {
+  return await request({
+    route: params.route,
     method: "DELETE",
-    headers: {
-      'Content-Type': 'application/json',
-      'authorization': params.authorization ?? ""
-    },
-  }).then(async response => {
-    console.error(response);
-    try {
-      return {
-        status: response.status,
-        body: await response.json()
-      }
-    } catch (error) {
-      return {
-        status: response.status,
+    token: params.authorization,
+    onSuccess: async (response: any) => {
+      console.error(response);
+      try {
+        return {
+          status: response.status,
+          body: await response.json()
+        }
+      } catch (error) {
+        return {
+          status: response.status,
+        }
       }
     }
-  }).catch((err) => {
-    console.error(err);
-    return {
-      status: 502,
-      body: err
-    };
   });
 }
 
