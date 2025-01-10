@@ -2,16 +2,25 @@ import { PropsWithChildren } from "react";
 import { TaskCard } from "./TaskCard";
 import { Task } from "../../../../interfaces/task";
 
-export function TaskCardView(props: PropsWithChildren<{ tasks: Array<Task> }>) {
-  
+interface TaskCardViewProps extends PropsWithChildren {
+  tasks: Array<Task>,
+  isReverse?: boolean,
+}
+
+export function TaskCardView(props: TaskCardViewProps) {
+  const tasks = props.tasks.map((task) => task);
+
+  if (props.isReverse) {
+    tasks.reverse();
+  }
+
   const renderCards = () => {
-    return props.tasks.map((task, key) => {
+    return tasks.map((task, key) => {
       return (
         <TaskCard key={key} task={task} />
       );
-    })
+    });
   }
-
 
   return (
     <>

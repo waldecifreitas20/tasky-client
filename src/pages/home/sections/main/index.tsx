@@ -6,16 +6,25 @@ import { TaskServices } from "../../../../services/task.ts";
 export function MainContent() {
   const [tasks, setTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRecentsFirst, setIsRecentsFirst] = useState(true);
 
   useEffect(() => {
     TaskServices.getAll()
       .then((allTasks) => {
         setTasks(allTasks);
       }).finally(() => setIsLoading(false))
-  });
+  }, []);
 
   if (isLoading) {
     return <h1> Esta pagina esta carregando</h1>
+  }
+
+
+  const checkTaskListOrder = (value: string) => {
+    if (value === "recents") {
+      return setIsRecentsFirst(true);
+    }
+    return setIsRecentsFirst(false);
   }
 
   return (
@@ -30,15 +39,19 @@ export function MainContent() {
 
             <div className="mt-2 mb-6">
               <label htmlFor="order-by">Ordenar por: </label>
-              <select className="ml-2 py-2 px-2 bg-white outline-none border" id="order-by">
+              <select
+                id="order-by"
+                className="ml-2 py-2 px-2 bg-white outline-none border"
+                onChange={(evt) => { checkTaskListOrder(evt.target.value) }}
+              >
                 <option className="font-light" value="recents">Mais Recentes</option>
-                <option className="font-light" value="recent">Mais Antigos</option>
+                <option className="font-light" value="olders">Mais Antigos</option>
               </select>
             </div>
 
           </section>
 
-          <TaskCardView tasks={tasks} />
+          <TaskCardView tasks={tasks} isReverse={isRecentsFirst} />
 
         </ResponsibleContainer>
       </main>
