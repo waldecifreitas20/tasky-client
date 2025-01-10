@@ -28,6 +28,7 @@ export function TaskCard(props: { task: Task }) {
         rounded-md 
         px-4 py-6 
         h-[400px]
+        w-full
         max-w-[380px]  
         md:max-w-[350px]
         lg:max-w-[300px]

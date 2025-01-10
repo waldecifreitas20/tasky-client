@@ -11,8 +11,9 @@ export interface TaskyApiPatchRequest extends TaskyApiPostRequest { }
 export interface TaskyApiBaseResquest {
   route: string,
   method: string,
-  token?: string,
-  onSuccess?: any,
+  authorization?: string,
+  onResponse?: any,
+  body?: any,
 }
 
 
@@ -21,10 +22,11 @@ async function request(params: TaskyApiBaseResquest) {
     method: params.method,
     headers: {
       'Content-Type': 'application/json',
-      'authorization': params.token ?? ""
-    }
+      'authorization': params.authorization ?? ""
+    },
+    body: JSON.stringify(params.body)
   })
-    .then(params.onSuccess ?? (
+    .then(params.onResponse ?? (
       async (response: any) => {
         return {
           status: response.status,
@@ -41,35 +43,21 @@ async function request(params: TaskyApiBaseResquest) {
 }
 
 async function GET(params: TaskyApiGetRequest) {
-  return await request({
-    route: params.route,
-    method: "GET",
-    token: params.authorization
-  });
+  return await request({ method: "GET", ...params });
 }
 
 async function POST(params: TaskyApiPostRequest) {
-  return await request({
-    route: params.route,
-    method: "POST",
-    token: params.authorization,
-  });
+  return await request({ method: "POST", ...params });
 }
 
 async function PATCH(params: TaskyApiPatchRequest) {
-  return await request({
-    route: params.route,
-    method: "PATCH",
-    token: params.authorization
-  });
+  return await request({ method: "PATCH", ...params });
 }
 
 async function DELETE(params: TaskyApiPatchRequest) {
   return await request({
-    route: params.route,
     method: "DELETE",
-    token: params.authorization,
-    onSuccess: async (response: any) => {
+    onResponse: async (response: any) => {
       console.error(response);
       try {
         return {
@@ -81,7 +69,8 @@ async function DELETE(params: TaskyApiPatchRequest) {
           status: response.status,
         }
       }
-    }
+    },
+    ...params,
   });
 }
 
