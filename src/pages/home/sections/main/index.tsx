@@ -8,6 +8,8 @@ export function MainContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRecentsFirst, setIsRecentsFirst] = useState(true);
 
+  const RECENTS_OPTION = "recents";
+
   useEffect(() => {
     TaskServices.getAll()
       .then((allTasks) => {
@@ -21,7 +23,7 @@ export function MainContent() {
 
 
   const checkTaskListOrder = (value: string) => {
-    if (value === "recents") {
+    if (value === RECENTS_OPTION) {
       return setIsRecentsFirst(true);
     }
     return setIsRecentsFirst(false);
@@ -44,8 +46,8 @@ export function MainContent() {
                 className="ml-2 py-2 px-2 bg-white outline-none border"
                 onChange={(evt) => { checkTaskListOrder(evt.target.value) }}
               >
-                <option className="font-light" value="recents">Mais Recentes</option>
-                <option className="font-light" value="olders">Mais Antigos</option>
+                <option className="font-light" value={RECENTS_OPTION}>Mais Recentes</option>
+                <option className="font-light" >Mais Antigos</option>
               </select>
             </div>
 
