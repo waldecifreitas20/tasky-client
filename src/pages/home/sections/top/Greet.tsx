@@ -1,11 +1,9 @@
-import { useContext } from "react";
 import { Button } from "../../../../components/Button";
 import { ResponsibleContainer } from "../../components/ResponsibleContainer";
-import { TaskFormContext } from "../../../../providers/TaskFormContext";
+import { useTaskForm } from "../../../../hooks/useTaskForm";
 
 export function Greet(props: { username: string }) {
-
-  const taskForm = useContext(TaskFormContext);
+  const taskForm = useTaskForm();
 
   return (
     <>

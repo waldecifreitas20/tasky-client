@@ -1,12 +1,11 @@
 import { Task } from "../../../../interfaces/task";
 import { Button } from "../../../../components/Button";
-import { useContext } from "react";
-import { TaskFormContext } from "../../../../providers/TaskFormContext";
 import { TaskServices } from "../../../../services/task";
+import { useTaskForm } from "../../../../hooks/useTaskForm";
 
 export function TaskCard(props: { task: Task }) {
   const { task } = props;
-  const taskForm = useContext(TaskFormContext);
+  const taskForm = useTaskForm();
 
   const deleteTask = async () => {
     try {

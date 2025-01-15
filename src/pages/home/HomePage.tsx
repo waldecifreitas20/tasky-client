@@ -5,7 +5,7 @@ import { MainContent } from "./sections/main/index.tsx";
 import { Footer } from "./sections/footer/Footer.tsx";
 import { AuthServices } from "../../services/auth.ts";
 import { Storage } from "../../services/storage.ts";
-import { TaskFormProvider } from "../../providers/TaskFormContext.tsx";
+import { TaskFormProvider } from "../../providers/TaskFormProvider.tsx";
 
 export function HomePage() {
   const [username, setUsername] = useState('Carlos');

@@ -1,23 +1,13 @@
-import { Children, createContext, PropsWithChildren, useRef, useState } from "react";
+import { Children, PropsWithChildren, useState } from "react";
+import { Task } from "../interfaces/task";
 import { TaskForm } from "../pages/home/components/TaskForm";
 import { TaskServices } from "../services/task";
-import { Task } from "../interfaces/task";
-
-
-export interface TaskFormActions {
-  open: CallableFunction
-  openEditable: CallableFunction
-};
-
-export const TaskFormContext = createContext({
-  open: () => { },
-  openEditable: (data: Task) => { }
-});
+import { TaskFormContext } from "../contexts/TaskFormContext";
 
 export function TaskFormProvider(props: PropsWithChildren) {
   const [isModalOpen, setModalDisplay] = useState(false);
   const [task, setTask] = useState<null | Task>(null);
-  
+
   const open = () => {
     setTask(null);
     setModalDisplay(true);
@@ -26,7 +16,7 @@ export function TaskFormProvider(props: PropsWithChildren) {
     setTask(data);
     setModalDisplay(true);
   }
-  
+
   const close = () => setModalDisplay(false);
   const isEditMode = () => !!task;
 
