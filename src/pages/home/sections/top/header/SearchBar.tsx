@@ -1,15 +1,23 @@
 import { MouseEvent, useState } from "react";
+import { SuggestedResultsList } from "./SuggestedResultList";
 
-export function SearchBar(props: { classes: string }) {
+export function SearchBar(props: { width: string }) {
   const [searchString, setSearchString] = useState('');
+  const results = [
+    { name: "Task 1", date: "10/02/2024" },
+    { name: "task 2", date: "10/02/2024" },
+    { name: "task 3", date: "10/02/2024" },
+    { name: "task 4", date: "10/02/2024" },
+    { name: "task 5", date: "10/02/2024" }
+  ];
 
   const onSearch = (evt: MouseEvent) => {
     evt.preventDefault();
     alert("Pesquise: " + searchString);
   }
   return (
-    <>
-      <form className={`dark-transparent flex justify-between rounded-sm ${props.classes ?? ""}`}>
+    <div className={`relative ${props.width}`}>
+      <form className="dark-transparent flex justify-between rounded-sm">
         <input
           className="transparent-placeholder pl-3 bg-transparent outline-0 w-full text-white py-3"
           type="search"
@@ -20,6 +28,8 @@ export function SearchBar(props: { classes: string }) {
           <i className="fa-solid fa-magnifying-glass fa-xl text-white"></i>
         </button>
       </form>
-    </>
+
+      <SuggestedResultsList results={results} />
+    </div>
   );
 }

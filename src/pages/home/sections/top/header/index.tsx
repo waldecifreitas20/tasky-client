@@ -28,7 +28,7 @@ export function AppHeader() {
             <Logo isResponsible />
           </Link>
 
-          <SearchBar classes="w-[65%]" />
+          <SearchBar width="w-[65%]" />
 
           <div className="justify-center items-center text-accent hidden md:flex">
             <a href="" className=" mr-2 text-accent" onClick={logoutUser}>Sair</a>
