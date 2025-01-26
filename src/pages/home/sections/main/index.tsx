@@ -14,6 +14,7 @@ export function MainContent() {
     TaskServices.getAll()
       .then((allTasks) => {
         setTasks(allTasks);
+        TaskServices.cacheTasks(allTasks);
       }).finally(() => setIsLoading(false))
   }, []);
 

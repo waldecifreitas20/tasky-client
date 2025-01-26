@@ -1,16 +1,12 @@
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { SuggestedResultsList } from "./SuggestedResultList";
+import { Task } from "../../../../../interfaces/task";
+import { TaskServices } from "../../../../../services/task";
 
 export function SearchBar(props: { width: string }) {
-  const [results, setResults] = useState<Array<any>>([]);
+  const data = TaskServices.getCachedTasks();
+  const [results, setResults] = useState<Array<Task>>([]);
 
-  const data = [
-    { name: "Task 1 hdhqwoihwq hi qwiheoqwiheopqh woehoq wehiq whiehioqwhoe hio ", date: "10/02/2024" },
-    { name: "task 2", date: "10/02/2024" },
-    { name: "task 3", date: "10/02/2024" },
-    { name: "task 4", date: "10/02/2024" },
-    { name: "task 5", date: "10/02/2024" }
-  ];
 
   const onSearch = (evt: MouseEvent) => {
     evt.preventDefault();
@@ -23,19 +19,19 @@ export function SearchBar(props: { width: string }) {
       return setResults([]);
     }
 
-    const suggestions = getSuggestions(search);
-    console.log(suggestions);
-    return setResults(suggestions);
+    return setResults(getSuggestions(search));
   }
 
   const getSuggestions = (search: string) => {
-    return data.filter((task) => {
+    return data.filter((task:any) => {
       const taskName = task.name.toLowerCase().trim();
       const match = search.toLowerCase().trim();
 
       return taskName.indexOf(match) !== -1;
     }) as Array<any>;
   }
+
+
   return (
     <div className={`relative ${props.width}`}>
       <form className="dark-transparent flex justify-between rounded-sm">

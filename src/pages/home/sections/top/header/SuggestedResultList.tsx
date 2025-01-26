@@ -1,8 +1,9 @@
+import { Task } from "../../../../../interfaces/task";
 import { SuggestedResult } from "./SuggestedResult";
 
 
 interface SuggestedResultsListProps {
-  results: Array<any>,
+  results: Array<Task>,
 }
 
 export function SuggestedResultsList(props: SuggestedResultsListProps) {

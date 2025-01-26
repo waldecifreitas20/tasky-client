@@ -64,9 +64,24 @@ async function deleteTask(taskId: number) {
   }
 }
 
+function cacheTasks(tasks: Array<Task>) {
+  Storage.save("tasks", JSON.stringify(tasks));
+}
+
+function getCachedTasks() {
+  const json = Storage.get("tasks");
+  const tasks = JSON.parse(json || "");
+  
+  if (!tasks || tasks === "") return [];
+
+  return tasks;
+}
+
 export const TaskServices = {
   create,
   getAll,
   update,
   deleteTask,
+  cacheTasks,
+  getCachedTasks
 }
