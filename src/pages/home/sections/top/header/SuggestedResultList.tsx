@@ -1,6 +1,4 @@
-import { Children, PropsWithChildren } from "react";
 import { SuggestedResult } from "./SuggestedResult";
-import { Task } from "../../../../../interfaces/task";
 
 
 interface SuggestedResultsListProps {
@@ -8,7 +6,10 @@ interface SuggestedResultsListProps {
 }
 
 export function SuggestedResultsList(props: SuggestedResultsListProps) {
-
+ 
+  if (props.results.length === 0) {
+    return (<></>);
+  }
 
   return (
     <>
