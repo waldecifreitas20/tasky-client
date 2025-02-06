@@ -71,6 +71,7 @@ async function loginWithGoogle(googleToken: string) {
 
 async function isLoggedIn() {
   const token = Storage.get('access_token') ?? "";
+  
   if (token === "") {
     return false;
   }

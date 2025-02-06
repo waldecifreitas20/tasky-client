@@ -69,10 +69,11 @@ function cacheTasks(tasks: Array<Task>) {
 }
 
 function getCachedTasks() {
-  const json = Storage.get("tasks");
-  const tasks = JSON.parse(json || "");
-  
-  if (!tasks || tasks === "") return [];
+  const json = Storage.get("tasks") ?? "";
+
+  const tasks: (Array<Task>) = JSON.parse(json);
+
+  if (!tasks) return [];
 
   return tasks;
 }

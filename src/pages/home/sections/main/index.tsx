@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import { ResponsibleContainer } from "../../components/ResponsibleContainer.tsx";
 import { TaskCardView } from "./TaskCardView.tsx";
-import { TaskServices } from "../../../../services/task.ts";
+import { useTasksData } from "../../../../hooks/useTasksData.tsx";
 
 export function MainContent() {
-  const [tasks, setTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRecentsFirst, setIsRecentsFirst] = useState(true);
+
+  const TasksData = useTasksData();
 
   const RECENTS_OPTION = "recents";
 
   useEffect(() => {
-    TaskServices.getAll()
-      .then((allTasks) => {
-        setTasks(allTasks);
-        TaskServices.cacheTasks(allTasks);
-      }).finally(() => setIsLoading(false))
-  }, []);
+    TasksData
+    .load()
+    .finally(() => setIsLoading(false))
+  }, [TasksData.tasks])
 
   if (isLoading) {
     return <h1> Esta pagina esta carregando</h1>
@@ -38,7 +37,7 @@ export function MainContent() {
           <h1 className="mb-6 mt-4 text-3xl text-primary">Suas Tarefas</h1>
 
           <section className="text-black">
-            <p>Total de Tarefas: {tasks.length}</p>
+            <p>Total de Tarefas: {TasksData.tasks.length}</p>
 
             <div className="mt-2 mb-6">
               <label htmlFor="order-by">Ordenar por: </label>
@@ -54,7 +53,7 @@ export function MainContent() {
 
           </section>
 
-          <TaskCardView tasks={tasks} isReverse={isRecentsFirst} />
+          <TaskCardView tasks={TasksData.tasks} isReverse={isRecentsFirst} />
 
         </ResponsibleContainer>
       </main>

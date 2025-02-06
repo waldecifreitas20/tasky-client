@@ -1,12 +1,12 @@
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import { SuggestedResultsList } from "./SuggestedResultList";
 import { Task } from "../../../../../interfaces/task";
 import { TaskServices } from "../../../../../services/task";
+import { useTasksData } from "../../../../../hooks/useTasksData";
 
 export function SearchBar(props: { width: string }) {
-  const data = TaskServices.getCachedTasks();
+  const taskData = useTasksData();
   const [results, setResults] = useState<Array<Task>>([]);
-
 
   const onSearch = (evt: MouseEvent) => {
     evt.preventDefault();
@@ -23,7 +23,7 @@ export function SearchBar(props: { width: string }) {
   }
 
   const getSuggestions = (search: string) => {
-    return data.filter((task:any) => {
+    return taskData.tasks.filter((task: any) => {
       const taskName = task.name.toLowerCase().trim();
       const match = search.toLowerCase().trim();
 

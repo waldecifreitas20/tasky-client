@@ -7,7 +7,9 @@ function remove(key: string) {
 }
 
 function get(key: string) {
-  return localStorage.getItem(key);
+  const data = localStorage.getItem(key);
+  
+  return !data ? null : data;
 }
 
 export const Storage = {
