@@ -1,7 +1,6 @@
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { SuggestedResultsList } from "./SuggestedResultList";
 import { Task } from "../../../../../interfaces/task";
-import { TaskServices } from "../../../../../services/task";
 import { useTasksData } from "../../../../../hooks/useTasksData";
 
 export function SearchBar(props: { width: string }) {
@@ -37,12 +36,12 @@ export function SearchBar(props: { width: string }) {
       <form className="dark-transparent flex justify-between rounded-sm">
         <input
           className="
-          transparent-placeholder 
-          bg-transparent 
-          outline-none 
-          w-full 
-          text-white py-3
-          pl-3 
+            transparent-placeholder 
+            bg-transparent 
+            outline-none 
+            w-full 
+            text-white py-3
+            pl-3 
           "
           type="search"
           placeholder="Pesquise uma tarefa"

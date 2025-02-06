@@ -1,14 +1,18 @@
 import { PropsWithChildren } from "react";
+import { useTaskForm } from "../../../../../hooks/useTaskForm";
+import { Task } from "../../../../../interfaces/task";
 
 interface SuggestedResultProps extends PropsWithChildren {
-  taskName: string,
-  date: string,
+  task: Task;
 }
 
 export function SuggestedResult(props: SuggestedResultProps) {
+  const taskForm = useTaskForm();
+
   return (
     <>
       <li
+        onClick={() => taskForm.openEditable(props.task)}
         key={`li-sgs-rslt-${0}`}
         className="
           flex justify-between  items-center
@@ -26,8 +30,8 @@ export function SuggestedResult(props: SuggestedResultProps) {
           grow-0 
           h-[22px] 
           whitespace-nowrap
-        ">{props.taskName}</p>
-        <p className="text-sm">{props.date}</p>
+        ">{props.task.name}</p>
+        <p className="text-sm">{props.task.date}</p>
       </li>
     </>
   );

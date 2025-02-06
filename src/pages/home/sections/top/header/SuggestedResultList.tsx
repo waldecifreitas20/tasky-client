@@ -7,7 +7,7 @@ interface SuggestedResultsListProps {
 }
 
 export function SuggestedResultsList(props: SuggestedResultsListProps) {
- 
+
   if (props.results.length === 0) {
     return (<></>);
   }
@@ -25,13 +25,8 @@ export function SuggestedResultsList(props: SuggestedResultsListProps) {
         bg-white 
         ">
         {
-          props.results.map((child) => {
-            return <>
-              <SuggestedResult
-                taskName={child.name}
-                date={child.date}
-              />
-            </>
+          props.results.map((task, index) => {
+            return <SuggestedResult key={index} task={task} />
           })
         }
       </ul>
