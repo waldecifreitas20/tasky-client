@@ -1,3 +1,6 @@
+import { appEnvs } from "./dotenv";
+
+
 export interface TaskyApiGetRequest {
   route: string,
   authorization?: string,
@@ -18,7 +21,7 @@ export interface TaskyApiBaseResquest {
 
 
 async function request(params: TaskyApiBaseResquest) {
-  return await fetch(`http://localhost:3000/${params.route}`, {
+  return await fetch(`${appEnvs.API_URL}/${params.route}`, {
     method: params.method,
     headers: {
       'Content-Type': 'application/json',
