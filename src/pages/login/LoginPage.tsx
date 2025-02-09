@@ -38,6 +38,7 @@ export function LoginPage() {
             buttonText="Entrar"
             legend="Login"
           >
+            <div className="mt-4"></div>
             <FormInput
               type="email"
               placeholder="Email"

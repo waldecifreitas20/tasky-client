@@ -18,7 +18,7 @@ export function SignUpPage() {
   const { errors } = formState;
 
   console.log(errors);
-  
+
   const onSignUp = async (data: any) => {
 
     const { username, password, email } = data;
@@ -61,6 +61,7 @@ export function SignUpPage() {
             buttonText="Cadastre-se"
             legend="Faça Seu Cadastro"
           >
+            <div className="mt-4"></div>
             <FormInput
               placeholder="Nome"
               type="text"
