@@ -26,13 +26,13 @@ export function GoogleLoginButton() {
   }
 
   return (
-    <>
+    <div className="block mx-auto">
       <GoogleOAuthProvider clientId={clientID}>
         <GoogleLogin
           onSuccess={onSuccess}
           onError={onError}
         />
       </GoogleOAuthProvider>
-    </>
+    </div>
   );
 }
